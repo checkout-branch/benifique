@@ -1,0 +1,321 @@
+import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:iconsax/iconsax.dart';
+
+class ViewProdect extends StatefulWidget {
+  String? titleName;
+  String? discount;
+  String? price;
+  String? brand;
+
+  ViewProdect(
+      {super.key,
+      required this.titleName,
+      required this.discount,
+      required this.brand,
+      required this.price});
+
+  @override
+  State<ViewProdect> createState() => _ViewProdectState();
+}
+
+class _ViewProdectState extends State<ViewProdect> {
+  final sizeOfShoes = [
+    '5',
+    '6',
+    '7',
+    '8',
+  ];
+  String imagesForChanging = 'asset/forumBLue-removebg-preview.png';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xffF1F5F8),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Icon(
+              Iconsax.heart5,
+              color: Colors.pink,
+              size: 30,
+            ),
+          )
+        ],
+      ),
+      backgroundColor: Color(0xffF1F5F8),
+      body: SafeArea(
+          child: Column(
+        children: [
+          contnainerStackImge(),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: bagroundColorOFscreen,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50))),
+              width: double.infinity,
+              child: Container(
+                margin: EdgeInsets.only(left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Gap(25),
+                    textAoboshiOne2(
+                        fontw: FontWeight.bold,
+                        text: '${widget.titleName}',
+                        fontSizes: 25,
+                        colors: Colors.black87),
+                    textAoboshiOne2(
+                        fontw: FontWeight.normal,
+                        text: 'Mens shoes',
+                        fontSizes: 13,
+                        colors: Colors.black87),
+                    Gap(5),
+                    Row(
+                      children: [
+                        textAoboshiOne2(
+                            fontw: FontWeight.bold,
+                            text: '${widget.discount}%',
+                            fontSizes: 20,
+                            colors: Colors.red),
+                        Gap(10),
+                        textAoboshiOne2(
+                            fontw: FontWeight.w800,
+                            text: '₹${widget.price}',
+                            fontSizes: 20,
+                            colors: Colors.black),
+                        Gap(10),
+                      ],
+                    ),
+                    Gap(5),
+                    textAoboshiOne2(
+                        text: 'Details',
+                        fontSizes: 18,
+                        colors: Colors.black,
+                        fontw: FontWeight.bold),
+                    textAoboshiOne2(
+                        text:
+                            'The was first introduced in 1984 as a high-performance basketball shoe. It quickly gained popularity not only on the courts but also as a streetwear staple.',
+                        fontSizes: 12,
+                        colors: Colors.black,
+                        fontw: FontWeight.normal),
+                    Gap(10),
+                    textAoboshiOne2(
+                        text: 'Select size:',
+                        fontSizes: 25,
+                        colors: Colors.black,
+                        fontw: FontWeight.bold),
+                    Gap(10),
+                    Container(
+                      height: 80,
+                      // color: mainBlueColor,
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 1.7,
+                        ),
+                        itemCount: 4,
+                        itemBuilder: (context, index) {
+                          return CircleAvatar(
+                              backgroundColor: mainBlueColor,
+                              radius: 15,
+                              child: textAoboshiOne2(
+                                  text: sizeOfShoes[index],
+                                  fontSizes: 20,
+                                  colors: Colors.white,
+                                  fontw: FontWeight.bold));
+                        },
+                      ),
+                    ),
+                    textAoboshiOne2(
+                        text: 'Reviews',
+                        fontSizes: 20,
+                        colors: Colors.black,
+                        fontw: FontWeight.bold),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Stack(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: mainBlueColor,
+                            radius: 15,
+                            child: Icon(
+                              Icons.reviews,
+                              color: Colors.white,
+                              size: 10,
+                            ),
+                          ),
+                          positionInCircleAvathar(posi: 20),
+                          positionInCircleAvathar(posi: 35),
+                          Positioned(
+                              left: 65,
+                              child: textAoboshiOne2(
+                                  text: '+1',
+                                  fontSizes: 15,
+                                  colors: mainBlueColor,
+                                  fontw: FontWeight.w900)),
+                        ],
+                      ),
+                    ),
+                    Gap(30),
+                    Row(
+                      children: [
+                        Container(
+                            height: 55,
+                            width: 100,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 15,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    backgroundColor: mainBlueColor),
+                                onPressed: () {},
+                                child: Icon(
+                                  Iconsax.shopping_cart5,
+                                  color: Colors.white,
+                                ))),
+                        Gap(10),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Container(
+                                height: 55,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        elevation: 15,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        backgroundColor: mainBlueColor),
+                                    onPressed: () {},
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        textAoboshiOne2(
+                                            text: 'Buy now',
+                                            fontSizes: 20,
+                                            colors: Colors.white,
+                                            fontw: FontWeight.bold),
+                                        Gap(10),
+                                        Icon(
+                                          Iconsax.shopping_cart5,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ))),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
+      )),
+    );
+  }
+
+  Positioned positionInCircleAvathar({required double posi}) {
+    return Positioned(
+      left: posi,
+      child: CircleAvatar(
+        child: Icon(
+          Icons.reviews,
+          color: Colors.white,
+          size: 10,
+        ),
+        backgroundColor: mainBlueColor,
+        radius: 15,
+      ),
+    );
+  }
+
+//................................................................
+  Container contnainerStackImge() {
+    return Container(
+      height: 250,
+      width: double.infinity,
+      child: Stack(
+        children: [
+          Positioned(
+              // left: 150,
+              child: Align(
+            alignment: Alignment.center,
+            child: Icon(
+              shadows: [
+                Shadow(color: Colors.black, offset: Offset(2, 0), blurRadius: 5)
+              ],
+              Icons.star,
+              size: 250,
+              color: mainBlueColor,
+            ),
+          )),
+          Positioned(
+            child: Center(
+              child: Container(
+                margin: EdgeInsets.only(top: 10),
+                height: 200,
+                width: 200,
+                child: Transform.rotate(
+                  angle: 40 * 3 / 180,
+                  child: Center(
+                    child: Image(
+                      image: AssetImage(imagesForChanging),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+              top: 25,
+              left: 10,
+              child: Text(
+                'Colors',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+          Positioned(
+              top: 50,
+              left: 15,
+              child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      imagesForChanging =
+                          'asset/forumgreen-removebg-preview.png';
+                    });
+                  },
+                  child: containerColor(colorName: Colors.green))),
+          Positioned(
+              top: 110,
+              left: 15,
+              child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      imagesForChanging =
+                          'asset/forumBLue-removebg-preview.png';
+                    });
+                  },
+                  child: containerColor(colorName: Colors.blue))),
+        ],
+      ),
+    );
+  }
+
+  Container containerColor({required Color colorName}) {
+    return Container(
+      height: 50,
+      width: 50,
+      child: Card(
+        color: colorName,
+      ),
+    );
+  }
+}
