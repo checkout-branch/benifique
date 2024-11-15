@@ -1,17 +1,52 @@
+import 'dart:io';
+
+import 'package:benefique/controller/prodectModals/prodectModel.dart';
+import 'package:benefique/modal/prodectModal/prodectModal.dart';
+import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditPage extends StatefulWidget {
-  const EditPage({super.key});
+  String? nameOfItem;
+  String? yourPrice;
+  String? currentPrice;
+  String? discount;
+  String? country;
+  String? selectedBrand;
+  String? state;
+  File? images;
+  int index;
+
+  EditPage(
+      {super.key,
+      required this.nameOfItem,
+      required this.yourPrice,
+      required this.currentPrice,
+      required this.discount,
+      required this.country,
+      this.selectedBrand,
+      required this.index,
+      required this.images,
+      this.state});
 
   @override
   State<EditPage> createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  final List<String> choseThebrand = [
+  late TextEditingController itemBrand;
+  late TextEditingController itemName;
+  late TextEditingController yourPriceController;
+  late TextEditingController currentPriceController;
+  late TextEditingController discountController;
+  late TextEditingController countryController;
+  late TextEditingController stateController;
+  File? imageSelect;
+
+  final List<String> choseTheBrand = [
     'Adidas',
     'Converse',
     'New Balance',
@@ -19,7 +54,7 @@ class _EditPageState extends State<EditPage> {
     'Nike',
     'Other',
   ];
-  List<String> districtsOfKerala = [
+  final List<String> districtsOfKerala = [
     'Alappuzha',
     'Ernakulam',
     'Idukki',
@@ -40,6 +75,33 @@ class _EditPageState extends State<EditPage> {
   String? selectedState;
 
   @override
+  void initState() {
+    super.initState();
+    itemBrand = TextEditingController(text: widget.selectedBrand);
+    itemName = TextEditingController(text: widget.nameOfItem);
+    yourPriceController = TextEditingController(text: widget.yourPrice);
+    currentPriceController = TextEditingController(text: widget.currentPrice);
+    discountController = TextEditingController(text: widget.discount);
+    countryController = TextEditingController(text: widget.country);
+    stateController = TextEditingController(text: widget.state);
+    selectedBrand = widget.selectedBrand;
+    selectedState = widget.state;
+    imageSelect = widget.images;
+  }
+
+  @override
+  void dispose() {
+    itemBrand.dispose();
+    itemName.dispose();
+    yourPriceController.dispose();
+    currentPriceController.dispose();
+    discountController.dispose();
+    countryController.dispose();
+    stateController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bagroundColorOFscreen,
@@ -54,8 +116,8 @@ class _EditPageState extends State<EditPage> {
           ),
         ],
         centerTitle: true,
-        title: const Text(
-          'Edit your Prodect',
+        title: Text(
+          'Edit your Product',
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -67,74 +129,18 @@ class _EditPageState extends State<EditPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    height: 180,
-                    width: 200,
-                    child: Card(
-                      elevation: 5,
-                      color: const Color(0xffd9d9d9),
-                      child: rowForImage(name: 'Add image'),
+                  GestureDetector(
+                    onTap: () {
+                      pickImageGallery();
+                    },
+                    child: CircleAvatar(
+                      radius: 80,
+                      backgroundImage: imageSelect != null
+                          ? FileImage(imageSelect!)
+                          : const AssetImage(
+                                  'asset/newOneAddImage-removebg-preview.png')
+                              as ImageProvider,
                     ),
-                  ),
-                   const Gap(10),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 85,
-                        width: 200,
-                        child: Card(
-                          elevation: 5,
-                          color: const Color(0xffd9d9d9),
-                          child: rowForImage(name: 'Add image'),
-                        ),
-                      ),
-                      const Gap(10),
-                      SizedBox(
-                        
-                        height: 85,
-                        width: 200,
-                        child: Card(
-                          elevation: 5,
-                          color: const Color(0xffd9d9d9),
-                          child: rowForImage(name: 'Add image'),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    height: 180,
-                    width: 200,
-                    child: Card(
-                      elevation: 5,
-                      color: const Color(0xffd9d9d9),
-                      child: rowForImage(name: 'Add image2 \nanother color'),
-                    ),
-                  ),
-                  const Gap(10),
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 85,
-                        width: 200,
-                        child: Card(
-                          elevation: 5,
-                          color: const Color(0xffd9d9d9),
-                          child: rowForImage(name: 'Add image'),
-                        ),
-                      ),
-                      const Gap(10),
-                      SizedBox(
-                        height: 85,
-                        width: 200,
-                        child: Card(
-                          elevation: 5,
-                          color: const Color(0xffd9d9d9),
-                          child: rowForImage(name: 'Add image'),
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
@@ -145,7 +151,7 @@ class _EditPageState extends State<EditPage> {
               child: Row(
                 children: [
                   Text(
-                    'ADD 2 -4  images to sell faster',
+                    'ADD 2-4 images to sell faster',
                     style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.bold,
@@ -169,6 +175,7 @@ class _EditPageState extends State<EditPage> {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: itemBrand,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(10),
                       filled: true,
@@ -180,9 +187,9 @@ class _EditPageState extends State<EditPage> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: const EdgeInsets.only(left: 10),
-                          hint: const Text('Chose the brand'),
+                          hint: const Text('Choose the brand'),
                           value: selectedBrand,
-                          items: choseThebrand
+                          items: choseTheBrand
                               .map<DropdownMenuItem<String>>((String ele) {
                             return DropdownMenuItem(
                                 value: ele, child: Text(ele));
@@ -190,6 +197,7 @@ class _EditPageState extends State<EditPage> {
                           onChanged: (value) {
                             setState(() {
                               selectedBrand = value;
+                              itemBrand.text = value!;
                             });
                           },
                           icon: const Icon(Icons.arrow_drop_down),
@@ -198,30 +206,49 @@ class _EditPageState extends State<EditPage> {
                     ),
                   ),
                   const Gap(20),
-                  textFeilds(
-                      name: 'Name of item',
-                      iconName: Icons.abc,
-                      controllName: ''),
+                  TextFormField(
+                    controller: itemName,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(10),
+                      hintText: 'Name of item',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
                   const Gap(25),
                   Row(
                     children: [
                       Expanded(
                         child: SizedBox(
                           height: 55,
-                          child: textFeilds(
-                              name: 'Your price',
-                              iconName: Iconsax.dollar_circle,
-                              controllName: ''),
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: yourPriceController,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              hintText: 'Your price',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              suffixIcon: Icon(Iconsax.dollar_circle),
+                            ),
+                          ),
                         ),
                       ),
                       const Gap(10),
                       Expanded(
                         child: SizedBox(
                           height: 55,
-                          child: textFeilds(
-                              name: 'Current price',
-                              iconName: Iconsax.dollar_circle,
-                              controllName: ''),
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: currentPriceController,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              hintText: 'Current price',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              suffixIcon: Icon(Iconsax.dollar_circle),
+                            ),
+                          ),
                         ),
                       )
                     ],
@@ -232,25 +259,39 @@ class _EditPageState extends State<EditPage> {
                       SizedBox(
                         height: 55,
                         width: 130,
-                        child: textFeilds(
-                            name: 'Discount',
-                            iconName: Iconsax.discount_shape,
-                            controllName: ''),
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: discountController,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.all(10),
+                            hintText: 'Discount',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            suffixIcon: Icon(Iconsax.discount_circle),
+                          ),
+                        ),
                       ),
                       const Gap(10),
                       Expanded(
                         child: SizedBox(
                           height: 55,
-                          child: textFeilds(
-                              name: 'Country',
-                              iconName: Icons.place,
-                              controllName: ''),
+                          child: TextFormField(
+                            controller: countryController,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              hintText: 'Country',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              suffixIcon: Icon(Iconsax.location),
+                            ),
+                          ),
                         ),
                       )
                     ],
                   ),
                   const Gap(15),
                   TextFormField(
+                    controller: stateController,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(10),
                       filled: true,
@@ -262,7 +303,7 @@ class _EditPageState extends State<EditPage> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: const EdgeInsets.only(left: 10),
-                          hint: const Text('Select Yout State'),
+                          hint: const Text('Select Your State'),
                           value: selectedState,
                           items: districtsOfKerala
                               .map<DropdownMenuItem<String>>((String ele) {
@@ -272,26 +313,29 @@ class _EditPageState extends State<EditPage> {
                           onChanged: (value) {
                             setState(() {
                               selectedState = value;
+                              stateController.text = value!;
                             });
                           },
                           icon: const Icon(Icons.arrow_drop_down),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-            const Gap(20),
+            const Gap(15),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     backgroundColor: mainBlueColor,
                     minimumSize: const Size(150, 50)),
-                onPressed: () {},
+                onPressed: () {
+                  addProduct();
+                },
                 child: const Text(
-                  'Eit Your Prodect',
+                  'Edit',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ))
           ],
@@ -300,20 +344,38 @@ class _EditPageState extends State<EditPage> {
     );
   }
 
-  Row rowForImage({required String name}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          name,
-          style: const TextStyle(color: Colors.black54, fontWeight: FontWeight.bold),
-        ),
-        const Gap(10),
-        const Icon(
-          Iconsax.gallery_add,
-          color: Colors.black54,
-        )
-      ],
-    );
+  Future addProduct() async {
+    final brand = itemBrand.text;
+    final item = itemName.text;
+    final yourPice = yourPriceController.text;
+    final curruntPrice = currentPriceController.text;
+    final discount = discountController.text;
+    final contrys = countryController.text;
+    final statesss = stateController.text;
+    final category = selectedBrand;
+    final saveAll = Prodectmodel(
+        modal: brand,
+        itemname: item,
+        yourPrice: yourPice,
+        currentPrice: curruntPrice,
+        discound: discount,
+        country: contrys,
+        state: statesss,
+        category: category,
+        images: imageSelect?.path ?? "");
+    editingProdect(widget.index, saveAll);
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (ctx) => Botoommm()));
+  }
+
+  Future<void> pickImageGallery() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        imageSelect = File(pickedFile.path);
+      }
+    });
   }
 }

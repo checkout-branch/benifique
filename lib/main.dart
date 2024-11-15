@@ -1,6 +1,10 @@
+import 'package:benefique/modal/cartModal/cartModal.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
+import 'package:benefique/screens/LoginAndSpalsh/splash.dart';
 import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
+
+import 'package:benefique/screens/homePage.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +17,14 @@ void main() async {
     Hive.registerAdapter(ProfileOfbenifiqueAdapter());
     Hive.registerAdapter(ProdectmodelAdapter());
   }
+  if (!Hive.isAdapterRegistered(ProdectmodelAdapter().typeId)) {
+    Hive.registerAdapter(ProdectmodelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(StoreCartAdapter().typeId)) {
+    Hive.registerAdapter(StoreCartAdapter());
+  }
   await Hive.openBox('userBox');
+  await Hive.openBox<StoreCart>('cartBox');
 
   runApp(MyApp());
 }

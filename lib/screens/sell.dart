@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:benefique/database/prodectModals/prodectModel.dart';
+import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +57,7 @@ class _SellProdectState extends State<SellProdect> {
     return Scaffold(
       backgroundColor: bagroundColorOFscreen,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: mainBlueColor,
         actions: [
           Padding(
@@ -84,10 +85,13 @@ class _SellProdectState extends State<SellProdect> {
                     pickImageGallery();
                   },
                   child: CircleAvatar(
-                    radius: 80,
+                    radius: 70,
+                    backgroundColor: Colors.white,
                     backgroundImage: imageSelect != null
                         ? FileImage(imageSelect!)
-                        : const AssetImage('') as ImageProvider,
+                        : AssetImage(
+                            'asset/newOneAddImage-removebg-preview.png',
+                          ) as ImageProvider,
                   ),
                 ),
                 Gap(10),
@@ -255,7 +259,7 @@ class _SellProdectState extends State<SellProdect> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: EdgeInsets.only(left: 10),
-                          hint: Text('Select Yout State'),
+                          hint: Text('Select Yout District'),
                           value: selectedState,
                           items: districtsOfKerala
                               .map<DropdownMenuItem<String>>((String ele) {
@@ -321,19 +325,27 @@ class _SellProdectState extends State<SellProdect> {
     final contrys = contry.text;
     final statesss = state.text;
     final category = selectedBrand;
-    final saveAll = Prodectmodel(
-        modal: brand,
-        itemname: item,
-        yourPrice: yourPice,
-        currentPrice: curruntPrice,
-        discound: discount,
-        country: contrys,
-        state: statesss,
-        category: category,
-        images: imageSelect?.path ?? "");
-    addProdectTolist(saveAll);
+    if (brand.isNotEmpty &&
+        item.isNotEmpty &&
+        yourPice.isNotEmpty &&
+        curruntPrice.isNotEmpty) {
+      final saveAll = Prodectmodel(
+          modal: brand,
+          itemname: item,
+          yourPrice: yourPice,
+          currentPrice: curruntPrice,
+          discound: discount,
+          country: contrys,
+          state: statesss,
+          category: category,
+          images: imageSelect?.path ?? "");
+      addProdectTolist(saveAll);
 
-    Navigator.pop(context);
+      Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red, content: Text('Fill The Details')));
+    }
   }
 
   Future<void> pickImageGallery() async {

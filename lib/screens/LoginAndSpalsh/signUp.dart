@@ -1,4 +1,3 @@
-import 'package:benefique/database/profilModal/profileFunctions.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
 import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
@@ -35,14 +34,15 @@ class _SignUpPageState extends State<SignUpPage> {
           username: usernameSave,
           password: paswordsave,
           phonenumber: numberSave);
-     var box = Hive.box('userBox');
-   box.put('username', usernameSave); 
-   box.put('phonenumber', numberSave);
+      var box = Hive.box('userBox');
+      box.put('username', usernameSave);
+      box.put('phonenumber', numberSave);
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (ctz) => Botoommm()));
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Fill the details to enter')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: mainBlueColor,
+          content: Text('Fill the Details to enter')));
     }
   }
 

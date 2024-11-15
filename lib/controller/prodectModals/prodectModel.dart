@@ -20,7 +20,7 @@ Future getAllProdect() async {
   prodectList.notifyListeners();
 }
 
-Future deleteStudent(int index) async {
+Future deleteProdect(int index) async {
   final prodectDb = await Hive.openBox<Prodectmodel>('save_prodect');
   prodectDb.deleteAt(index);
   getAllProdect();

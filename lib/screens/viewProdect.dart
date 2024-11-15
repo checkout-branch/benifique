@@ -1,3 +1,8 @@
+import 'dart:io';
+
+import 'package:benefique/controller/cartFunction/cartFunction.dart';
+import 'package:benefique/modal/prodectModal/prodectModal.dart';
+import 'package:benefique/screens/cart.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -8,11 +13,13 @@ class ViewProdect extends StatefulWidget {
   String? discount;
   String? price;
   String? brand;
+  File imagepath;
 
   ViewProdect(
       {super.key,
       required this.titleName,
       required this.discount,
+      required this.imagepath,
       required this.brand,
       required this.price});
 
@@ -27,7 +34,7 @@ class _ViewProdectState extends State<ViewProdect> {
     '7',
     '8',
   ];
-  String imagesForChanging = 'asset/forumBLue-removebg-preview.png';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,18 +51,26 @@ class _ViewProdectState extends State<ViewProdect> {
           )
         ],
       ),
-      backgroundColor: Color(0xffF1F5F8),
+      backgroundColor: mainBlueColor,
       body: SafeArea(
           child: Column(
         children: [
-          contnainerStackImge(),
+          Container(
+              height: 250,
+              width: double.infinity,
+              child: ClipRRect(
+                child: Image.file(
+                  widget.imagepath,
+                  fit: BoxFit.cover,
+                ),
+              )),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
                   color: bagroundColorOFscreen,
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(50),
-                      topRight: Radius.circular(50))),
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0))),
               width: double.infinity,
               child: Container(
                 margin: EdgeInsets.only(left: 20),
@@ -104,8 +119,8 @@ class _ViewProdectState extends State<ViewProdect> {
                         fontw: FontWeight.normal),
                     Gap(10),
                     textAoboshiOne2(
-                        text: 'Select size:',
-                        fontSizes: 25,
+                        text: 'Available size:',
+                        fontSizes: 20,
                         colors: Colors.black,
                         fontw: FontWeight.bold),
                     Gap(10),
@@ -115,7 +130,7 @@ class _ViewProdectState extends State<ViewProdect> {
                       child: GridView.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
-                          childAspectRatio: 1.7,
+                          childAspectRatio: 1.9,
                         ),
                         itemCount: 4,
                         itemBuilder: (context, index) {
@@ -167,13 +182,34 @@ class _ViewProdectState extends State<ViewProdect> {
                             height: 55,
                             width: 100,
                             child: ElevatedButton(
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                          backgroundColor: Colors.white,
+                                          content: Row(
+                                            children: [
+                                              Container(
+                                                height: 40,
+                                                width: 70,
+                                                child: Image(
+                                                    image: AssetImage(
+                                                        'asset/Animation - 1731644344351.gif')),
+                                              ),
+                                              Gap(10),
+                                              textAoboshiOne2(
+                                                  text: 'Added to cart',
+                                                  fontSizes: 18,
+                                                  colors: Colors.black,
+                                                  fontw: FontWeight.bold)
+                                            ],
+                                          )));
+                                },
                                 style: ElevatedButton.styleFrom(
                                     elevation: 15,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     backgroundColor: mainBlueColor),
-                                onPressed: () {},
                                 child: Icon(
                                   Iconsax.shopping_cart5,
                                   color: Colors.white,
@@ -238,76 +274,6 @@ class _ViewProdectState extends State<ViewProdect> {
   }
 
 //................................................................
-  Container contnainerStackImge() {
-    return Container(
-      height: 250,
-      width: double.infinity,
-      child: Stack(
-        children: [
-          Positioned(
-              // left: 150,
-              child: Align(
-            alignment: Alignment.center,
-            child: Icon(
-              shadows: [
-                Shadow(color: Colors.black, offset: Offset(2, 0), blurRadius: 5)
-              ],
-              Icons.star,
-              size: 250,
-              color: mainBlueColor,
-            ),
-          )),
-          Positioned(
-            child: Center(
-              child: Container(
-                margin: EdgeInsets.only(top: 10),
-                height: 200,
-                width: 200,
-                child: Transform.rotate(
-                  angle: 40 * 3 / 180,
-                  child: Center(
-                    child: Image(
-                      image: AssetImage(imagesForChanging),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-              top: 25,
-              left: 10,
-              child: Text(
-                'Colors',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-          Positioned(
-              top: 50,
-              left: 15,
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      imagesForChanging =
-                          'asset/forumgreen-removebg-preview.png';
-                    });
-                  },
-                  child: containerColor(colorName: Colors.green))),
-          Positioned(
-              top: 110,
-              left: 15,
-              child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      imagesForChanging =
-                          'asset/forumBLue-removebg-preview.png';
-                    });
-                  },
-                  child: containerColor(colorName: Colors.blue))),
-        ],
-      ),
-    );
-  }
 
   Container containerColor({required Color colorName}) {
     return Container(

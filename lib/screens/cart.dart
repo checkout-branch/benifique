@@ -1,16 +1,30 @@
+import 'dart:io';
+
+import 'package:benefique/controller/cartFunction/cartFunction.dart';
+import 'package:benefique/modal/cartModal/cartModal.dart';
+import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+  List<Prodectmodel> cartItemsOfEach;
+
+  CartPage({super.key, required this.cartItemsOfEach});
 
   @override
   State<CartPage> createState() => _CartPageState();
 }
 
 class _CartPageState extends State<CartPage> {
+  @override
+  void initState() {
+    super.initState();
+    getAllCart();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +37,7 @@ class _CartPageState extends State<CartPage> {
               Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 13,
-                    ),
+                    padding: const EdgeInsets.only(left: 13),
                     child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -78,38 +90,52 @@ class _CartPageState extends State<CartPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(30),
-                        ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return SizedBox(
-                              height: 100,
-                              child: Card(
-                                color: const Color(0xffFBFCF8),
-                                elevation: 5,
-                                child: Center(
-                                  child: ListTile(
-                                    leading: SizedBox(
-                                      height: 80,
-                                      width: 80,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.asset(
-                                          'asset/459718128_1192585765505177_3114789471614213053_n.jpg',
-                                          fit: BoxFit.cover,
-                                          // height: 100,
-                                          // width: 80,
+                        Gap(30),
+                        ValueListenableBuilder(
+                          valueListenable: cartlisterner,
+                          builder: (context, List<StoreCart> cartStoredItems, child) {
+                            return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: cartStoredItems.length,
+                              itemBuilder: (context, index) {
+                                final items = cartStoredItems[index];
+                                return SizedBox(
+                                  height: 100,
+                                  child: Card(
+                                    color: const Color(0xffFBFCF8),
+                                    elevation: 5,
+                                    child: Center(
+                                      child: ListTile(
+                                        leading: Container(
+                                          height: 80,
+                                          width: 80,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(10),
+                                            child: (items.image != null )
+                                              ? Image.file(
+                                                  File(items.image!),
+                                                  fit: BoxFit.cover,
+                                                )
+                                              : Image.asset(
+                                                  'asset/pumaHo-removebg-preview.png',
+                                                  fit: BoxFit.cover,
+                                                ),
+                                          ),
+                                        ),
+                                        title: Text(items.itemsName.toString()),
+                                        subtitle: Text(items.price.toString()),
+                                        trailing: IconButton(
+                                          icon: const Icon(Icons.delete),
+                                          onPressed: () {
+                                            deleteCart(index);
+                                          },
                                         ),
                                       ),
                                     ),
-                                    title: const Text('adidas forum low'),
-                                    subtitle: const Text('rinshid'),
-                                    trailing: const Icon(Icons.delete),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                             );
                           },
                         ),
@@ -135,7 +161,9 @@ class _CartPageState extends State<CartPage> {
                               ),
                               minimumSize: const Size(100, 50),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             child: const Text(
                               'Check Out',
                               style: TextStyle(color: Colors.white),

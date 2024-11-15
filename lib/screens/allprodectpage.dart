@@ -1,9 +1,13 @@
 import 'dart:io';
 
-import 'package:benefique/database/prodectModals/prodectModel.dart';
+import 'package:benefique/controller/cartFunction/cartFunction.dart';
+import 'package:benefique/controller/prodectModals/prodectModel.dart';
+
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
+import 'package:benefique/screens/cart.dart';
 import 'package:benefique/screens/viewProdect.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
@@ -36,6 +40,7 @@ class _AllprodectPageState extends State<AllprodectPage> {
   void initState() {
     super.initState();
     getAllProdect();
+    filteredListOfProduct('All');
   }
 
   @override
@@ -136,16 +141,18 @@ Widget GridForAllProdect({required int index}) {
         ),
         itemBuilder: (context, index) {
           final getDatass = valuesOfProduct[index];
+          var iconGet = Icons.card_travel;
 
           return GestureDetector(
             onLongPress: () {
-              deleteStudent(index);
+              deleteProdect(index);
             },
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (ctx) => ViewProdect(
+                    imagepath: File(getDatass.images ?? ''),
                     titleName: getDatass.itemname,
                     discount: getDatass.discound,
                     price: getDatass.yourPrice,
@@ -170,7 +177,7 @@ Widget GridForAllProdect({required int index}) {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image(
-                          image: FileImage(File(getDatass.images.toString())),
+                          image: FileImage(File(getDatass.images ?? '')),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -196,15 +203,17 @@ Widget GridForAllProdect({required int index}) {
                           ),
                           Spacer(),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              saveCartItem(getDatass);
+                            },
                             child: Icon(
-                              Iconsax.shopping_cart,
+                              Icons.shopping_cart,
                               size: 30,
                             ),
-                          )
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

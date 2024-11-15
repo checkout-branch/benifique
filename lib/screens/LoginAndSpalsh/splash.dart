@@ -1,16 +1,12 @@
 import 'dart:async';
-
 import 'package:benefique/screens/LoginAndSpalsh/getStart.dart';
-import 'package:benefique/screens/LoginAndSpalsh/login.dart';
 import 'package:flutter/material.dart';
-
 class SplashScreen extends StatefulWidget {
   SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {

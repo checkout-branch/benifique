@@ -31,8 +31,21 @@ class _LoginScreenState extends State<LoginScreen> {
             context, MaterialPageRoute(builder: (ctx) => Botoommm()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Invalid username or password')));
+            SnackBar(backgroundColor: mainBlueColor,content: Text('Invalid username or password')));
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          behavior: SnackBarBehavior.floating,
+          elevation: 5,
+          backgroundColor: mainBlueColor,
+          content: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                child: Text('Enter username & password')),
+          )));
     }
   }
 
@@ -46,7 +59,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Stack(
                 children: [
-                  
                   Container(
                     height: 250,
                     width: double.infinity,
