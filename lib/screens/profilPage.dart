@@ -60,7 +60,7 @@ class _ProfilePState extends State<ProfileP> {
                       shape: BoxShape.circle,
                       border: Border.all(
                         width: 2,
-                        color: Colors.blue, // Replace with your main color
+                 
                       ),
                     ),
                     child: CircleAvatar(

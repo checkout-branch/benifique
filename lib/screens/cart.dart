@@ -1,18 +1,16 @@
 import 'dart:io';
-
-import 'package:benefique/controller/cartFunction/cartFunction.dart';
-import 'package:benefique/modal/cartModal/cartModal.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:benefique/controller/cartFunction/cartFunction.dart';
+import 'package:benefique/modal/cartModal/cartModal.dart';
+import 'package:benefique/screens/widgets/widgetAndColors.dart';
 
-// ignore: must_be_immutable
 class CartPage extends StatefulWidget {
-  List<Prodectmodel> cartItemsOfEach;
+  final List<Prodectmodel> cartItemsOfEach;
 
-  CartPage({super.key, required this.cartItemsOfEach});
+  const CartPage({super.key, required this.cartItemsOfEach});
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -90,16 +88,18 @@ class _CartPageState extends State<CartPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Gap(30),
+                        const Gap(30),
                         ValueListenableBuilder(
                           valueListenable: cartlisterner,
-                          builder: (context, List<StoreCart> cartStoredItems, child) {
+                          builder: (context, List<StoreCart> cartStoredItems,
+                              child) {
                             return ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: cartStoredItems.length,
                               itemBuilder: (context, index) {
                                 final items = cartStoredItems[index];
+
                                 return SizedBox(
                                   height: 100,
                                   child: Card(
@@ -108,19 +108,20 @@ class _CartPageState extends State<CartPage> {
                                     child: Center(
                                       child: ListTile(
                                         leading: Container(
-                                          height: 80,
-                                          width: 80,
+                                          height: double.infinity,
+                                          width: 60,
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10),
-                                            child: (items.image != null )
-                                              ? Image.file(
-                                                  File(items.image!),
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : Image.asset(
-                                                  'asset/pumaHo-removebg-preview.png',
-                                                  fit: BoxFit.cover,
-                                                ),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: items.image != null &&
+                                                    File(items.image!)
+                                                        .existsSync()
+                                                ? Image.file(
+                                                    File(items.image!),
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : const Icon(Icons
+                                                    .image_not_supported),
                                           ),
                                         ),
                                         title: Text(items.itemsName.toString()),

@@ -1,3 +1,4 @@
+import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/cartModal/cartModal.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:flutter/foundation.dart';
@@ -16,7 +17,6 @@ Future<void> saveCartItem(Prodectmodel cartItem) async {
   cartlisterner.value.addAll(box.values);
   cartlisterner.notifyListeners();
 }
-
 
 Future<void> getAllCart() async {
   final box = await Hive.openBox<StoreCart>('cartBox');

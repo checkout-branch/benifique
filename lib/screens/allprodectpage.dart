@@ -1,13 +1,11 @@
 import 'dart:io';
-
 import 'package:benefique/controller/cartFunction/cartFunction.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
-
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
-import 'package:benefique/screens/cart.dart';
+
 import 'package:benefique/screens/viewProdect.dart';
 import 'package:benefique/screens/widgets/widgetAndColors.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
@@ -20,7 +18,34 @@ class AllprodectPage extends StatefulWidget {
 }
 
 class _AllprodectPageState extends State<AllprodectPage> {
-  final shoesForAllCatogeres = [
+  TextEditingController searchController = TextEditingController();
+  String search = '';
+  List<Prodectmodel> searchResult = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getAllProdect();
+    filteredListOfProduct('All');
+    searchListUpdate();
+  }
+
+  void searchListUpdate() {
+    setState(() {
+      if (search.isEmpty) {
+        searchResult = filterlist.value;
+      } else {
+        searchResult = filterlist.value
+            .where((product) =>
+                product.itemname!.toLowerCase().contains(search.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
+  int currentIndex = 0;
+
+  final shoesForAllCategories = [
     'All',
     'Adidas',
     'Converse',
@@ -28,20 +53,6 @@ class _AllprodectPageState extends State<AllprodectPage> {
     'Puma',
     'Nike'
   ];
-
-  final pagesOfTab = List<Widget>.generate(
-    6,
-    (index) => GridForAllProdect(index: index),
-  );
-
-  int curruntIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    getAllProdect();
-    filteredListOfProduct('All');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +74,19 @@ class _AllprodectPageState extends State<AllprodectPage> {
             Gap(15),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
-              child: textFeilds(
-                name: 'Search Prodects',
-                iconName: Icons.search,
-                controllName: '',
+              child: TextFormField(
+                controller: searchController,
+                onChanged: (value) {
+                  search = value;
+                  searchListUpdate();
+                },
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: 'Search products',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  suffixIcon: Icon(Iconsax.search_normal_1),
+                ),
               ),
             ),
             Gap(20),
@@ -75,22 +95,23 @@ class _AllprodectPageState extends State<AllprodectPage> {
               height: 50,
               width: double.infinity,
               child: ListView.builder(
-                itemCount: shoesForAllCatogeres.length,
+                itemCount: shoesForAllCategories.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                        curruntIndex = index;
-                        filteredListOfProduct(shoesForAllCatogeres[index]);
+                        currentIndex = index;
+                        filteredListOfProduct(shoesForAllCategories[index]);
+                        searchListUpdate();
                       });
                     },
                     child: Container(
                       margin: EdgeInsets.all(5),
-                      width: curruntIndex != index ? 90 : 100,
+                      width: currentIndex != index ? 90 : 100,
                       decoration: BoxDecoration(
                         color: mainBlueColor,
-                        borderRadius: curruntIndex == index
+                        borderRadius: currentIndex == index
                             ? BorderRadius.only(
                                 topRight: Radius.circular(20),
                                 bottomLeft: Radius.circular(20))
@@ -98,10 +119,10 @@ class _AllprodectPageState extends State<AllprodectPage> {
                       ),
                       child: Center(
                         child: Text(
-                          shoesForAllCatogeres[index],
+                          shoesForAllCategories[index],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: curruntIndex == index ? 17 : 15,
+                            fontSize: currentIndex == index ? 17 : 15,
                             color: Colors.white,
                           ),
                         ),
@@ -117,7 +138,7 @@ class _AllprodectPageState extends State<AllprodectPage> {
                 minHeight: 200,
                 maxHeight: MediaQuery.of(context).size.height,
               ),
-              child: pagesOfTab[curruntIndex],
+              child: GridForAllProdect(productList: searchResult),
             ),
           ],
         ),
@@ -126,103 +147,116 @@ class _AllprodectPageState extends State<AllprodectPage> {
   }
 }
 
-Widget GridForAllProdect({required int index}) {
-  return ValueListenableBuilder(
-    valueListenable: filterlist,
-    builder: (context, List<Prodectmodel> valuesOfProduct, child) {
-      return GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 9,
-          crossAxisSpacing: 9,
-          childAspectRatio: 0.8,
-        ),
-        itemBuilder: (context, index) {
-          final getDatass = valuesOfProduct[index];
-          var iconGet = Icons.card_travel;
-
-          return GestureDetector(
-            onLongPress: () {
-              deleteProdect(index);
-            },
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (ctx) => ViewProdect(
-                    imagepath: File(getDatass.images ?? ''),
-                    titleName: getDatass.itemname,
-                    discount: getDatass.discound,
-                    price: getDatass.yourPrice,
-                    brand: getDatass.modal,
-                  ),
-                ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Card(
-                elevation: 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      height: 165,
-                      width: double.infinity,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image(
-                          image: FileImage(File(getDatass.images ?? '')),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: textAoboshiOne2(
-                        text: getDatass.itemname.toString(),
-                        fontSizes: 17,
-                        colors: Colors.black87,
-                        fontw: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        children: [
-                          textAoboshiOne2(
-                            text: getDatass.yourPrice.toString(),
-                            fontSizes: 17,
-                            colors: Colors.black87,
-                            fontw: FontWeight.bold,
-                          ),
-                          Spacer(),
-                          GestureDetector(
-                            onTap: () {
-                              saveCartItem(getDatass);
-                            },
-                            child: Icon(
-                              Icons.shopping_cart,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+Widget GridForAllProdect({required List<Prodectmodel> productList}) {
+  return GridView.builder(
+    physics: NeverScrollableScrollPhysics(),
+    shrinkWrap: true,
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      mainAxisSpacing: 9,
+      crossAxisSpacing: 9,
+      childAspectRatio: 0.8,
+    ),
+    itemBuilder: (context, index) {
+      final getDatass = productList[index];
+      return GestureDetector(
+        onLongPress: () {
+          deleteProdect(index);
+        },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (ctx) => ViewProdect(
+                imagepath: File(getDatass.images ?? ''),
+                titleName: getDatass.itemname,
+                discount: getDatass.discound,
+                price: getDatass.yourPrice,
+                brand: getDatass.modal,
               ),
             ),
           );
         },
-        itemCount: valuesOfProduct.length,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Card(
+            elevation: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 165,
+                  width: double.infinity,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image(
+                      image: FileImage(File(getDatass.images ?? '')),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: textAoboshiOne2(
+                    text: getDatass.itemname.toString(),
+                    fontSizes: 17,
+                    colors: Colors.black87,
+                    fontw: FontWeight.bold,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      textAoboshiOne2(
+                        text: getDatass.yourPrice.toString(),
+                        fontSizes: 17,
+                        colors: Colors.black87,
+                        fontw: FontWeight.bold,
+                      ),
+                      Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          saveCartItem(getDatass);
+
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.white,
+                              content: Row(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 70,
+                                    child: Image(
+                                        image: AssetImage(
+                                            'asset/Animation - 1731646779762 (1).gif')),
+                                  ),
+                                  Gap(10),
+                                  textAoboshiOne2(
+                                      text: 'Added to cart',
+                                      fontSizes: 18,
+                                      colors: Colors.black,
+                                      fontw: FontWeight.bold)
+                                ],
+                              )));
+                        },
+                        child: Icon(
+                          Icons.shopping_cart,
+                          size: 30,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
     },
+    itemCount: productList.length,
   );
 }
 

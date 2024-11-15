@@ -235,7 +235,7 @@ class _SellProdectState extends State<SellProdect> {
                             controller: contry,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Country',
+                              hintText: 'State',
 
                               // contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
@@ -325,10 +325,7 @@ class _SellProdectState extends State<SellProdect> {
     final contrys = contry.text;
     final statesss = state.text;
     final category = selectedBrand;
-    if (brand.isNotEmpty &&
-        item.isNotEmpty &&
-        yourPice.isNotEmpty &&
-        curruntPrice.isNotEmpty) {
+    if (item.isNotEmpty && yourPice.isNotEmpty && curruntPrice.isNotEmpty) {
       final saveAll = Prodectmodel(
           modal: brand,
           itemname: item,
