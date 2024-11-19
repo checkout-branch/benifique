@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
-import 'package:benefique/screens/allprodectpage.dart';
-import 'package:benefique/screens/editPage.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+
+import 'package:benefique/view/editPage.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 
 class EditMain extends StatefulWidget {
@@ -63,7 +63,7 @@ class _EditMainState extends State<EditMain> {
                             ),
                           );
                         },
-                        leading: Container(
+                        leading: SizedBox(
                           height: double.infinity,
                           width: 60,
                           child: ClipRRect(

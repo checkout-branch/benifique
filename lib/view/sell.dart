@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
@@ -59,7 +59,7 @@ class _SellProdectState extends State<SellProdect> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: mainBlueColor,
-        actions: [
+        actions: const [
           Padding(
             padding: EdgeInsets.only(right: 10),
             child: CircleAvatar(
@@ -101,7 +101,7 @@ class _SellProdectState extends State<SellProdect> {
             Padding(
               padding: EdgeInsets.only(left: 30),
               child: Row(
-                children: [
+                children: const [
                   Text(
                     'ADD 2 -4  images to sell faster',
                     style: TextStyle(

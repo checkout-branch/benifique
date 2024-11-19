@@ -1,4 +1,4 @@
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
@@ -21,7 +21,7 @@ class _OrderPageState extends State<OrderPage> {
             children: [
                Gap(15),
                Stack(
-                children: [
+                children: const [
                   Align(
                     alignment: Alignment.center,
                     child: Text(

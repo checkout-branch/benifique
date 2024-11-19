@@ -16,6 +16,7 @@ class ProfileOfbenifique {
 
   ProfileOfbenifique(
       {required this.username,
+      this.images,
       required this.password,
       required this.phonenumber});
 }

@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
-import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/bottomNavigation/bt.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 
+// ignore: must_be_immutable
 class EditPage extends StatefulWidget {
   String? nameOfItem;
   String? yourPrice;
@@ -366,7 +367,7 @@ class _EditPageState extends State<EditPage> {
     editingProdect(widget.index, saveAll);
 
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (ctx) => Botoommm()));
+        context, MaterialPageRoute(builder: (ctx) => Navigationpage()));
   }
 
   Future<void> pickImageGallery() async {

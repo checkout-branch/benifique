@@ -1,11 +1,22 @@
 import 'dart:io';
-import 'package:benefique/modal/prodectModal/prodectModal.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:benefique/controller/cartFunction/cartFunction.dart';
 import 'package:benefique/modal/cartModal/cartModal.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/modal/prodectModal/prodectModal.dart';
+
+double getSubtotal(List<StoreCart> cartItems) {
+  double subtotal = 0;
+  for (var item in cartItems) {
+    subtotal += double.parse(item.price!);
+  }
+  return subtotal;
+}
+
+const double deliveryCharge = 50;
+const double tax = 30;
 
 class CartPage extends StatefulWidget {
   final List<Prodectmodel> cartItemsOfEach;
@@ -17,10 +28,32 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  double subtotal = 0;
+  double total = 0;
+
   @override
   void initState() {
     super.initState();
     getAllCart();
+    updateTotals();
+  }
+
+  void updateTotals() {
+    setState(() {
+      subtotal = getSubtotal(cartlisterner.value);
+      total = subtotal + deliveryCharge + tax;
+    });
+  }
+
+  void refreshCart() {
+    updateTotals();
+  }
+
+  String getTheImage(StoreCart item) {
+    if (item.image == null || item.image!.isEmpty) {
+      return '';
+    }
+    return item.image!;
   }
 
   @override
@@ -89,16 +122,15 @@ class _CartPageState extends State<CartPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Gap(30),
-                        ValueListenableBuilder(
+                        ValueListenableBuilder<List<StoreCart>>(
                           valueListenable: cartlisterner,
-                          builder: (context, List<StoreCart> cartStoredItems,
-                              child) {
+                          builder: (context, cartStoredItems, child) {
                             return ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: cartStoredItems.length,
                               itemBuilder: (context, index) {
-                                final items = cartStoredItems[index];
+                                final item = cartStoredItems[index];
 
                                 return SizedBox(
                                   height: 100,
@@ -107,29 +139,30 @@ class _CartPageState extends State<CartPage> {
                                     elevation: 5,
                                     child: Center(
                                       child: ListTile(
-                                        leading: Container(
+                                        leading: SizedBox(
                                           height: double.infinity,
                                           width: 60,
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: items.image != null &&
-                                                    File(items.image!)
+                                            child: item.image != null &&
+                                                    File(getTheImage(item))
                                                         .existsSync()
                                                 ? Image.file(
-                                                    File(items.image!),
+                                                    File(getTheImage(item)),
                                                     fit: BoxFit.cover,
                                                   )
-                                                : const Icon(Icons
-                                                    .image_not_supported),
+                                                : const Icon(
+                                                    Icons.image_not_supported),
                                           ),
                                         ),
-                                        title: Text(items.itemsName.toString()),
-                                        subtitle: Text(items.price.toString()),
+                                        title: Text(item.itemsName.toString()),
+                                        subtitle: Text(item.price.toString()),
                                         trailing: IconButton(
                                           icon: const Icon(Icons.delete),
                                           onPressed: () {
                                             deleteCart(index);
+                                            refreshCart();
                                           },
                                         ),
                                       ),
@@ -141,17 +174,29 @@ class _CartPageState extends State<CartPage> {
                           },
                         ),
                         const Gap(50),
-                        priceOfCart(name: 'SubTotal', price: '90909'),
-                        const Gap(3),
-                        priceOfCart(name: 'Delivery Charge', price: '90909'),
-                        const Gap(3),
-                        priceOfCart(name: 'Tax', price: '90909'),
-                        const Gap(3),
-                        const Divider(),
-                        priceOfCart(
-                          name: 'Total',
-                          price: '99999',
-                        ),
+                        cartlisterner.value.isNotEmpty
+                            ? Column(
+                                children: [
+                                  priceOfCart(
+                                    name: 'SubTotal',
+                                    price: '$subtotal',
+                                  ),
+                                  const Gap(3),
+                                  priceOfCart(
+                                    name: 'Delivery Charge',
+                                    price: '$deliveryCharge',
+                                  ),
+                                  const Gap(3),
+                                  priceOfCart(name: 'Tax', price: '$tax'),
+                                  const Gap(3),
+                                  const Divider(),
+                                  priceOfCart(
+                                    name: 'Total',
+                                    price: '$total',
+                                  ),
+                                ],
+                              )
+                            : Text('Cart is emtyy'),
                         const Gap(35),
                         Center(
                           child: ElevatedButton(
@@ -171,7 +216,8 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                         ),
-                        const Gap(20)
+                        
+                        const Gap(20),
                       ],
                     ),
                   ),

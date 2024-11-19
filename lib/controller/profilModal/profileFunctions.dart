@@ -8,12 +8,14 @@ Future addProfileData(ProfileOfbenifique values) async {
   final adddataofp = await Hive.openBox<ProfileOfbenifique>('saveData');
   adddataofp.add(values);
   profileNotifiers.value.add(values);
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   profileNotifiers.notifyListeners();
 }
 
-Future getAll() async {
+Future getAllProfile() async {
   final adddataofp = await Hive.openBox<ProfileOfbenifique>('saveData');
   profileNotifiers.value.clear();
   profileNotifiers.value.addAll(adddataofp.values);
-    profileNotifiers.notifyListeners();
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+  profileNotifiers.notifyListeners();
 }

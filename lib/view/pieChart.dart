@@ -1,4 +1,4 @@
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -33,15 +33,17 @@ class _DashbordState extends State<Dashbord> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: mainBlueColor,
-        title:  Text("Pie chart",style: TextStyle(color: Colors.white),),
-        
+        title: Text(
+          "Pie chart",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: PieChart(
-        key:  Key("pie_chart"),
+        key: Key("pie_chart"),
         dataMap: dataMap,
         colorList: colorList,
         chartRadius: MediaQuery.of(context).size.width / 2.2,
-        legendOptions:  LegendOptions(
+        legendOptions: LegendOptions(
           showLegendsInRow: false,
           legendPosition: LegendPosition.right,
           showLegends: true,
@@ -50,7 +52,7 @@ class _DashbordState extends State<Dashbord> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        chartValuesOptions:  ChartValuesOptions(
+        chartValuesOptions: const ChartValuesOptions(
           showChartValuesInPercentage: true,
           showChartValuesOutside: true,
           decimalPlaces: 1,

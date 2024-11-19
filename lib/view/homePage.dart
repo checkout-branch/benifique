@@ -1,17 +1,12 @@
-import 'package:benefique/screens/sell.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/sell.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List colors = [
@@ -105,29 +100,30 @@ class _HomePageState extends State<HomePage> {
                         const Spacer(),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: mainBlueColor,
+                                backgroundColor: bagroundColorOFscreen,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
+                                    borderRadius: BorderRadius.circular(10)),
+                                side: BorderSide(color: mainBlueColor)),
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (ctx) => SellProdect(),
+                                  builder: (ctx) => const SellProdect(),
                                 ),
                               );
                             },
                             child: textAoboshiOne2(
                                 text: "Sell",
                                 fontSizes: 20,
-                                colors: bagroundColorOFscreen,
+                                colors: mainBlueColor,
                                 fontw: FontWeight.bold))
                       ],
                     ),
                   ),
                   const Gap(20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: const Divider(),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    child: Divider(),
                   ),
                   const Gap(20),
                   Padding(
@@ -202,6 +198,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // ignore: non_constant_identifier_names
   Column ColumStack(
       {required String imagename,
       required Color giveColors,

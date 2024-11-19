@@ -1,14 +1,16 @@
+import 'package:benefique/controller/profilModal/profileFunctions.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
-import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+import 'package:benefique/view/LoginAndSpalsh/loginFor.dart';
+import 'package:benefique/view/bottomNavigation/bt.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({super.key});
+  const SignUpPage({super.key});
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -34,11 +36,13 @@ class _SignUpPageState extends State<SignUpPage> {
           username: usernameSave,
           password: paswordsave,
           phonenumber: numberSave);
-      var box = Hive.box('userBox');
-      box.put('username', usernameSave);
-      box.put('phonenumber', numberSave);
+      addProfileData(save);
+      // var box = Hive.box('userBox');
+      // box.put('username', usernameSave);
+      // box.put('phonenumber', numberSave);
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (ctz) => Botoommm()));
+          // ignore: use_build_context_synchronously
+          context, MaterialPageRoute(builder: (ctz) => const Navigationpage()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: mainBlueColor,
@@ -125,7 +129,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Login()));
                           },
                           child: Text(
                             'Login',

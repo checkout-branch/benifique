@@ -10,6 +10,8 @@ Future addProdectTolist(Prodectmodel value) async {
 
   prodectList.value.add(value);
 
+  
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   prodectList.notifyListeners();
 }
 
@@ -17,6 +19,7 @@ Future getAllProdect() async {
   final prodectDb = await Hive.openBox<Prodectmodel>('save_prodect');
   prodectList.value.clear();
   prodectList.value.addAll(prodectDb.values);
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   prodectList.notifyListeners();
 }
 
@@ -31,9 +34,14 @@ Future<void> editingProdect(index, Prodectmodel value) async {
 
   prodectList.value.clear();
   prodectList.value.addAll(prodectDb.values);
+  // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
   prodectList.notifyListeners();
   prodectDb.putAt(index, value);
   getAllProdect();
 }
 
 ValueNotifier<List<Prodectmodel>> filterlist = ValueNotifier([]);
+
+// Future<List> seperateCategoryForPieData()async{
+
+// }

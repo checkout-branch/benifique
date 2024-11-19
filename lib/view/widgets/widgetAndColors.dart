@@ -1,9 +1,10 @@
-import 'package:benefique/screens/viewProdect.dart';
+import 'package:benefique/view/profilPage.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:iconsax/iconsax.dart';
 
-var mainBlueColor = Color(0xff1a434e);
+var mainBlueColor = Colors.blue;
+//  Color(0xff514eb5)
+//  Color(0xff1a434e)
 var textColor = Colors.black;
 // Color(0xff4B0082)
 // Colors.blue
@@ -21,8 +22,7 @@ Widget textFeilds({
   required IconData iconName,
   required String controllName,
   TextInputType? keybordtype,
-     TextEditingController ?  controller,
-
+  TextEditingController? controller,
 }) {
   return TextFormField(
     keyboardType: keybordtype,
@@ -53,14 +53,21 @@ Widget benificContainerRow() {
               child: Image(
                   image: AssetImage('asset/Benfiqe-removebg-preview.png'))),
           Spacer(),
-          CircleAvatar(
-            child: textAoboshiOne2(
-                text: 'R',
-                fontSizes: 15,
-                colors: Colors.white,
-                fontw: FontWeight.bold),
-            radius: 20,
-            backgroundColor: mainBlueColor,
+          GestureDetector(
+            onTap: () {
+              
+            },
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: mainBlueColor,
+              child: Center(
+                child: textAoboshiOne2(
+                    text: a,
+                    fontSizes: 20,
+                    colors: Colors.white,
+                    fontw: FontWeight.bold),
+              ),
+            ),
           ),
           Gap(15)
         ],
@@ -97,7 +104,7 @@ final containerForCarosilForHome = [
       itemName: 'JORDAN',
       price: 'Only at :  ₹ 5.999',
       imagepath: 'asset/Main-removebg-preview.png'),
-  Container(
+  SizedBox(
     height: 350,
     child: Stack(
       children: [
@@ -155,7 +162,7 @@ Widget whitStakeForContainer({
             Text(
               'New Relese',
               style: TextStyle(
-                  shadows: [
+                  shadows: const [
                     Shadow(
                       offset: Offset(2, 0),
                     )
@@ -168,7 +175,7 @@ Widget whitStakeForContainer({
             Text(
               brandName,
               style: TextStyle(
-                  shadows: [
+                  shadows: const [
                     Shadow(
                       offset: Offset(2, 0),
                     )
@@ -180,7 +187,7 @@ Widget whitStakeForContainer({
             Text(
               itemName,
               style: TextStyle(
-                  shadows: [
+                  shadows: const [
                     Shadow(
                       offset: Offset(2, 0),
                     )

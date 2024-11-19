@@ -1,10 +1,8 @@
 import 'package:benefique/modal/cartModal/cartModal.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
-import 'package:benefique/screens/LoginAndSpalsh/splash.dart';
-import 'package:benefique/screens/bottomNavigation/bootomBar.dart';
 
-import 'package:benefique/screens/homePage.dart';
+import 'package:benefique/view/LoginAndSpalsh/splash.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,7 +21,7 @@ void main() async {
   if (!Hive.isAdapterRegistered(StoreCartAdapter().typeId)) {
     Hive.registerAdapter(StoreCartAdapter());
   }
-  await Hive.openBox('userBox');
+
   await Hive.openBox<StoreCart>('cartBox');
 
   runApp(MyApp());
@@ -34,9 +32,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Botoommm(),
-    );
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen());
   }
 }

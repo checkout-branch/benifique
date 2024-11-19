@@ -1,13 +1,10 @@
 import 'dart:io';
-
-import 'package:benefique/controller/cartFunction/cartFunction.dart';
-import 'package:benefique/modal/prodectModal/prodectModal.dart';
-import 'package:benefique/screens/cart.dart';
-import 'package:benefique/screens/widgets/widgetAndColors.dart';
+ import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 
+// ignore: must_be_immutable
 class ViewProdect extends StatefulWidget {
   String? titleName;
   String? discount;
@@ -40,9 +37,9 @@ class _ViewProdectState extends State<ViewProdect> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffF1F5F8),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             child: Icon(
               Iconsax.heart5,
               color: Colors.pink,
@@ -55,7 +52,7 @@ class _ViewProdectState extends State<ViewProdect> {
       body: SafeArea(
           child: Column(
         children: [
-          Container(
+          SizedBox(
               height: 250,
               width: double.infinity,
               child: ClipRRect(
@@ -75,7 +72,7 @@ class _ViewProdectState extends State<ViewProdect> {
               child: Container(
                 margin: EdgeInsets.only(left: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,                       
                   children: [
                     Gap(25),
                     textAoboshiOne2(
@@ -124,7 +121,7 @@ class _ViewProdectState extends State<ViewProdect> {
                         colors: Colors.black,
                         fontw: FontWeight.bold),
                     Gap(10),
-                    Container(
+                    SizedBox(
                       height: 80,
                       // color: mainBlueColor,
                       child: GridView.builder(
@@ -158,6 +155,7 @@ class _ViewProdectState extends State<ViewProdect> {
                             backgroundColor: mainBlueColor,
                             radius: 15,
                             child: Icon(
+                              
                               Icons.reviews,
                               color: Colors.white,
                               size: 10,
@@ -178,7 +176,7 @@ class _ViewProdectState extends State<ViewProdect> {
                     Gap(30),
                     Row(
                       children: [
-                        Container(
+                        SizedBox(
                             height: 55,
                             width: 100,
                             child: ElevatedButton(
@@ -188,7 +186,7 @@ class _ViewProdectState extends State<ViewProdect> {
                                           backgroundColor: Colors.white,
                                           content: Row(
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 height: 40,
                                                 width: 70,
                                                 child: Image(
@@ -218,7 +216,7 @@ class _ViewProdectState extends State<ViewProdect> {
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(right: 20),
-                            child: Container(
+                            child: SizedBox(
                                 height: 55,
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -262,21 +260,21 @@ class _ViewProdectState extends State<ViewProdect> {
     return Positioned(
       left: posi,
       child: CircleAvatar(
+        backgroundColor: mainBlueColor,
+        radius: 15,
         child: Icon(
           Icons.reviews,
           color: Colors.white,
           size: 10,
         ),
-        backgroundColor: mainBlueColor,
-        radius: 15,
       ),
     );
   }
 
 //................................................................
 
-  Container containerColor({required Color colorName}) {
-    return Container(
+  SizedBox containerColor({required Color colorName}) {
+    return SizedBox(
       height: 50,
       width: 50,
       child: Card(

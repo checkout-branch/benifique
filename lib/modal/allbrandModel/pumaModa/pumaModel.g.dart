@@ -1,41 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profileModal.dart';
+part of 'pumaModel.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ProfileOfbenifiqueAdapter extends TypeAdapter<ProfileOfbenifique> {
+class AdidasmodalAdapter extends TypeAdapter<Adidasmodal> {
   @override
-  final int typeId = 0;
+  final int typeId = 4;
 
   @override
-  ProfileOfbenifique read(BinaryReader reader) {
+  Adidasmodal read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ProfileOfbenifique(
-      username: fields[0] as String?,
-      images: fields[3] as String?,
-      password: fields[1] as String?,
-      phonenumber: fields[2] as String?,
+    return Adidasmodal(
+      puma: fields[0] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, ProfileOfbenifique obj) {
+  void write(BinaryWriter writer, Adidasmodal obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.username)
       ..writeByte(1)
-      ..write(obj.password)
-      ..writeByte(2)
-      ..write(obj.phonenumber)
-      ..writeByte(3)
-      ..write(obj.images);
+      ..writeByte(0)
+      ..write(obj.puma);
   }
 
   @override
@@ -44,7 +35,7 @@ class ProfileOfbenifiqueAdapter extends TypeAdapter<ProfileOfbenifique> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ProfileOfbenifiqueAdapter &&
+      other is AdidasmodalAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
