@@ -9,7 +9,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Navigationpage extends StatefulWidget {
-  const Navigationpage({super.key});
+  int curntBottomindex;
+  Navigationpage({super.key, this.curntBottomindex = 0});
 
   @override
   State<Navigationpage> createState() => _NavigationpageState();
@@ -24,6 +25,13 @@ var pages = [
 ];
 
 class _NavigationpageState extends State<Navigationpage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    currentState = widget.curntBottomindex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

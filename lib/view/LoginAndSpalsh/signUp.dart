@@ -40,9 +40,8 @@ class _SignUpPageState extends State<SignUpPage> {
       // var box = Hive.box('userBox');
       // box.put('username', usernameSave);
       // box.put('phonenumber', numberSave);
-      Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context, MaterialPageRoute(builder: (ctz) => const Navigationpage()));
+         Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (ctx) => Navigationpage()), (c) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: mainBlueColor,

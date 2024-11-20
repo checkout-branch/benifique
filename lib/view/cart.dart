@@ -12,7 +12,12 @@ import 'package:benefique/modal/prodectModal/prodectModal.dart';
 double getSubtotal(List<StoreCart> cartItems) {
   double subtotal = 0;
   for (var item in cartItems) {
-    subtotal += double.parse(item.price!);
+    try {
+      // Ensure price is a valid number, default to '0' if null
+      subtotal += double.parse(item.price ?? '0');
+    } catch (e) {
+      log("Invalid price format for item: ${item.itemsName}, price: ${item.price}");
+    }
   }
   return subtotal;
 }
@@ -42,8 +47,10 @@ class _CartPageState extends State<CartPage> {
 
   void updateTotals() {
     setState(() {
-      subtotal = getSubtotal(cartlisterner.value);
-      total = subtotal + deliveryCharge + tax;
+      subtotal =
+          double.parse(getSubtotal(cartlisterner.value).toStringAsFixed(2));
+      total =
+          double.parse((subtotal + deliveryCharge + tax).toStringAsFixed(2));
     });
   }
 
@@ -51,9 +58,10 @@ class _CartPageState extends State<CartPage> {
     updateTotals();
   }
 
-  var imagess = '';
-  void getimage(StoreCart items) {
-    imagess = items.image!;
+  void deleteCart(int index) {
+    cartlisterner.value.removeAt(index);
+    cartlisterner.notifyListeners(); // Notify listeners about the change
+    refreshCart();
   }
 
   @override
@@ -125,12 +133,18 @@ class _CartPageState extends State<CartPage> {
                         ValueListenableBuilder<List<StoreCart>>(
                           valueListenable: cartlisterner,
                           builder: (context, cartStoredItems, child) {
+                            log("Cart items: $cartStoredItems");
                             return ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: cartStoredItems.length,
                               itemBuilder: (context, index) {
                                 final item = cartStoredItems[index];
+                                final imagePath = item.image;
+
+                                if (imagePath == null) {
+                                  log(' ${item.itemsName}');
+                                }
 
                                 return SizedBox(
                                   height: 100,
@@ -145,14 +159,11 @@ class _CartPageState extends State<CartPage> {
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: item.image != null &&
-                                                    File(imagess).existsSync()
-                                                ? Image.file(
-                                                    File((imagess)),
-                                                    fit: BoxFit.cover,
-                                                  )
-                                                : const Icon(
-                                                    Icons.image_not_supported),
+                                            child: Image(
+                                              image: FileImage(File(item
+                                                      .image ??
+                                                  'default/image/path.png')),
+                                            ),
                                           ),
                                         ),
                                         title: Text(item.itemsName.toString()),
@@ -161,7 +172,6 @@ class _CartPageState extends State<CartPage> {
                                           icon: const Icon(Icons.delete),
                                           onPressed: () {
                                             deleteCart(index);
-                                            refreshCart();
                                           },
                                         ),
                                       ),

@@ -28,10 +28,10 @@ class _LoginState extends State<Login> {
       if (UserNameForLogin.text == username &&
           passwordForLogin.text == password) {
         await pref.setBool('isLogined', true);
-        Navigator.pushReplacement(
-            // ignore: use_build_context_synchronously
+        Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (ctx) => const Navigationpage()));
+            MaterialPageRoute(builder: (ctx) => Navigationpage()),
+            (c) => false);
       } else {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

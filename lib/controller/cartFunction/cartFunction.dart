@@ -11,6 +11,7 @@ Future<void> saveCartItem(Prodectmodel cartItem) async {
   final storeCartItem = StoreCart(
     itemsName: cartItem.itemname,
     price: cartItem.yourPrice.toString(),
+    image: cartItem.images
   );
   await box.add(storeCartItem);
   cartlisterner.value.clear();
