@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
 
+var cartindex = 0;
 bool cartTrue = false;
 bool wishList = false;
 dynamic colorForWhishList = Colors.grey;
@@ -19,7 +20,7 @@ class AllprodectPage extends StatefulWidget {
   @override
   State<AllprodectPage> createState() => _AllprodectPageState();
 }
- 
+
 class _AllprodectPageState extends State<AllprodectPage> {
   TextEditingController searchController = TextEditingController();
   String search = '';
@@ -29,8 +30,10 @@ class _AllprodectPageState extends State<AllprodectPage> {
   @override
   void initState() {
     super.initState();
-    getAllProdect();
-    filteredListOfProduct('All');
+    getAllProdect().then((_) {
+      filteredListOfProduct('All');
+      searchListUpdate();
+    });
     searchListUpdate();
   }
 
@@ -72,18 +75,21 @@ class _AllprodectPageState extends State<AllprodectPage> {
               children: [
                 const Icon(Iconsax.heart5),
                 const Gap(20),
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => CartPage(
-                          cartItemsOfEach: prodectList.value,
-                        ),
-                      ),
-                    );
-                  },
-                  icon: const Icon(Iconsax.shopping_cart),
+                Badge(
+                  label: Text(cartindex.toString()),
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (ctx) => CartPage(
+                              cartItemsOfEach: prodectList.value,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Icon(Iconsax.shopping_cart)),
                 ),
               ],
             ),
@@ -290,49 +296,28 @@ Widget GridForAllProdect({required List<Prodectmodel> productList}) {
                       minimumSize: const Size(double.infinity, 40),
                     ),
                     onPressed: () {
-                      cartTrue = !cartTrue;
-                      cartTrue ? saveCartItem(getDatass) : deleteCart(index);
-                      cartTrue
-                          ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              duration: Duration(milliseconds: 300),
-                              backgroundColor: bagroundColorOFscreen,
-                              content: Row(
-                                children: [
-                                  SizedBox(
-                                    height: 50,
-                                    width: 60,
-                                    child: Image(
-                                        image: AssetImage(
-                                            'asset/Animation - 1731646779762 (1).gif')),
-                                  ),
-                                  Gap(30),
-                                  textAoboshiOne2(
-                                      text: 'Added to Cart',
-                                      fontSizes: 18,
-                                      colors: Colors.black,
-                                      fontw: FontWeight.bold)
-                                ],
-                              )))
-                          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              duration: Duration(milliseconds: 300),
-                              backgroundColor: bagroundColorOFscreen,
-                              content: Row(
-                                children: [
-                                  SizedBox(
-                                    height: 50,
-                                    width: 60,
-                                    child: Image(
-                                        image: AssetImage(
-                                            'asset/Animation - 1731852793169.gif')),
-                                  ),
-                                  Gap(30),
-                                  textAoboshiOne2(
-                                      text: 'Item removed from Cart',
-                                      fontSizes: 18,
-                                      colors: Colors.black,
-                                      fontw: FontWeight.bold)
-                                ],
-                              )));
+                      saveCartItem(getDatass);
+
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          duration: Duration(milliseconds: 300),
+                          backgroundColor: bagroundColorOFscreen,
+                          content: Row(
+                            children: [
+                              SizedBox(
+                                height: 50,
+                                width: 60,
+                                child: Image(
+                                    image: AssetImage(
+                                        'asset/Animation - 1731646779762 (1).gif')),
+                              ),
+                              Gap(30),
+                              textAoboshiOne2(
+                                  text: 'Added to Cart',
+                                  fontSizes: 18,
+                                  colors: Colors.black,
+                                  fontw: FontWeight.bold)
+                            ],
+                          )));
                     },
                     child: const Text(
                       'Add to Cart',

@@ -31,7 +31,7 @@ class _ProfilePState extends State<ProfileP> {
     _openProfileBox();
   }
 
-  Future<void> _openProfileBox() async { 
+  Future<void> _openProfileBox() async {
     profileBox = await Hive.openBox<ProfileOfbenifique>('saveData');
     setState(() {
       isBoxOpened = true;
@@ -68,7 +68,6 @@ class _ProfilePState extends State<ProfileP> {
         child: Column(
           children: [
             const Gap(20),
-            if (!isBoxOpened) Center(child: CircularProgressIndicator()),
             if (isBoxOpened)
               ValueListenableBuilder(
                 valueListenable: profileBox.listenable(),
@@ -181,7 +180,52 @@ class _ProfilePState extends State<ProfileP> {
                       ),
                       buildListTile(
                         onTap: () {
-                          dataClear(context);
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Warning'),
+                                content:
+                                    Text('Are you Want to clear all your data'),
+                                actions: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  side: BorderSide(
+                                                      color: mainBlueColor)),
+                                              backgroundColor:
+                                                  bagroundColorOFscreen),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            'Cancel',
+                                            style:
+                                                TextStyle(color: mainBlueColor),
+                                          )),
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: mainBlueColor),
+                                          onPressed: () {
+                                            dataClear(context);
+                                          },
+                                          child: Text(
+                                            'Clear',
+                                            style: TextStyle(
+                                                color: bagroundColorOFscreen),
+                                          )),
+                                    ],
+                                  )
+                                ],
+                              );
+                            },
+                          );
                         },
                         leading: Iconsax.data,
                         traill: Iconsax.arrow_right,
@@ -190,7 +234,52 @@ class _ProfilePState extends State<ProfileP> {
                       const Gap(10),
                       buildListTile(
                         onTap: () {
-                          logout();
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('Warning'),
+                                content:
+                                    Text('Are you Want to clear all your data'),
+                                actions: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  side: BorderSide(
+                                                      color: mainBlueColor)),
+                                              backgroundColor:
+                                                  bagroundColorOFscreen),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            'Cancel',
+                                            style:
+                                                TextStyle(color: mainBlueColor),
+                                          )),
+                                      ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: mainBlueColor),
+                                          onPressed: () {
+                                            logout();
+                                          },
+                                          child: Text(
+                                            'Logout',
+                                            style: TextStyle(
+                                                color: bagroundColorOFscreen),
+                                          )),
+                                    ],
+                                  )
+                                ],
+                              );
+                            },
+                          );
                         },
                         leading: Iconsax.logout5,
                         traill: Iconsax.arrow_right,

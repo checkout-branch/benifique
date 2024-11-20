@@ -1,3 +1,5 @@
+import 'package:benefique/constants/image_constant.dart';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/sell.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,24 +21,24 @@ class HomePage extends StatelessWidget {
     ];
     final carpa = [
       ColumStack(
-          brandName: 'Adidas',
-          modelName: 'Forum Low',
-          imagename: 'asset/forumgreen-removebg-preview.png',
+          brandName: TextConstant.brandNameAdidas,
+          modelName: TextConstant.modelNameAdidas,
+          imagename: ImageConstant.adidasImage,
           giveColors: colors[0]),
       ColumStack(
-          brandName: 'New Balance',
-          modelName: 'Casablanca',
-          imagename: 'asset/newwww-removebg-preview (1).png',
+          brandName: TextConstant.newbalanceBrandname,
+          modelName: TextConstant.newbalanceModelName,
+          imagename: ImageConstant.newbalanceImge,
           giveColors: colors[1]),
       ColumStack(
-          brandName: 'Puma',
-          modelName: 'Vectors',
-          imagename: 'asset/pumaHo-removebg-preview.png',
+          brandName: TextConstant.pumaBrandName,
+          modelName: TextConstant.pumaModelName,
+          imagename: ImageConstant.pumaImage,
           giveColors: colors[2]),
       ColumStack(
-          brandName: 'Nike',
-          modelName: 'Air Jordan',
-          imagename: 'asset/joorrrr-removebg-preview.png',
+          brandName: TextConstant.nikeBrandName,
+          modelName: TextConstant.nikeModelName,
+          imagename: ImageConstant.nikeImage,
           giveColors: colors[2]),
     ];
 
@@ -54,7 +56,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(left: 20),
                     child: textAoboshiOne(
-                      text: 'New Collections',
+                      text: TextConstant.homeTitle1,
                       fontSizes: 25,
                       colors: textColor,
                     ),
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(left: 20),
                     child: textAoboshiOne(
-                      text: 'Explore the new collection of Benefiq Store ',
+                      text: TextConstant.homeTitle2,
                       fontSizes: 15,
                       colors: textColor,
                     ),
@@ -92,7 +94,7 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       children: [
                         textAoboshiOne2(
-                          text: 'Earn money\nSell Your product',
+                          text: TextConstant.earnMoney,
                           fontSizes: 20,
                           colors: textColor,
                           fontw: FontWeight.bold,
@@ -131,7 +133,7 @@ class HomePage extends StatelessWidget {
                     child: Row(
                       children: [
                         textAoboshiOne2(
-                          text: 'Latest Shoes',
+                          text: TextConstant.latestShoes,
                           fontSizes: 25,
                           colors: textColor,
                           fontw: FontWeight.bold,
@@ -149,7 +151,7 @@ class HomePage extends StatelessWidget {
                           child: Row(
                             children: [
                               textAoboshiOne2(
-                                text: 'Show All',
+                                text: TextConstant.showALl,
                                 fontSizes: 15,
                                 colors: textColor,
                                 fontw: FontWeight.bold,

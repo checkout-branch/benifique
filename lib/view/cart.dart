@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +50,9 @@ class _CartPageState extends State<CartPage> {
     updateTotals();
   }
 
-  String getTheImage(StoreCart item) {
-    if (item.image == null || item.image!.isEmpty) {
-      return '';
-    }
-    return item.image!;
+  var imagess = '';
+  void getimage(StoreCart items) {
+    imagess = items.image!;
   }
 
   @override
@@ -146,10 +145,9 @@ class _CartPageState extends State<CartPage> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             child: item.image != null &&
-                                                    File(getTheImage(item))
-                                                        .existsSync()
+                                                    File(imagess).existsSync()
                                                 ? Image.file(
-                                                    File(getTheImage(item)),
+                                                    File((imagess)),
                                                     fit: BoxFit.cover,
                                                   )
                                                 : const Icon(
@@ -216,7 +214,6 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                         ),
-                        
                         const Gap(20),
                       ],
                     ),

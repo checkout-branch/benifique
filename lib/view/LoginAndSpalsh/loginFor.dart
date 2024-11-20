@@ -19,12 +19,10 @@ class _LoginState extends State<Login> {
   // ignore: non_constant_identifier_names
   TextEditingController UserNameForLogin = TextEditingController();
   TextEditingController passwordForLogin = TextEditingController();
-
   Future<void> foLogin() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? username = pref.getString('usernamForSignUp');
     String? password = pref.getString('passwordForSignUp');
-
     if (UserNameForLogin.text.isNotEmpty & passwordForLogin.text.isNotEmpty) {
       if (UserNameForLogin.text == username &&
           passwordForLogin.text == password) {

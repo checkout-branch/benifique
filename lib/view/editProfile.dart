@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:benefique/modal/profileModal/profileModal.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +19,9 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
   TextEditingController phonenumber = TextEditingController();
   File? selectedImage;
 
-  // Ensure Hive is properly initialized before opening a box
   Future<void> take() async {
     var box = await Hive.openBox<ProfileOfbenifique>('saveData');
-    // Assuming you want to retrieve data and populate the TextEditingControllers
+    
     List<ProfileOfbenifique>? profileList = box.values.toList();
     if (profileList.isNotEmpty) {
       var profile = profileList.first;
@@ -51,7 +49,8 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
             text: 'Edit Your Profile',
             fontSizes: 20,
             colors: Colors.black,
-            fontw: FontWeight.normal),
+            fontw: FontWeight.normal
+            ),
       ),
       body: Center(
         child: Container(
