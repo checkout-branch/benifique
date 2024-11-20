@@ -1,3 +1,4 @@
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -88,7 +89,7 @@ class _DashbordState extends State<Dashbord> {
           ),
           Gap(30),
           textAoboshiOne2(
-              text: 'Prodect Details',
+              text: TextConstant.details,
               fontSizes: 20,
               colors: Colors.black,
               fontw: FontWeight.bold),
@@ -111,17 +112,25 @@ class _DashbordState extends State<Dashbord> {
                 children: [
                   Gap(10),
                   rowFortext(
-                      givename: adidass, colors: Colors.blue, name: 'Adidas'),
+                      givename: adidass,
+                      colors: Colors.blue,
+                      name: TextConstant.adiasText),
                   rowFortext(
                       givename: converese,
                       colors: Colors.orange,
-                      name: 'Converse'),
+                      name: TextConstant.converseText),
                   rowFortext(
-                      givename: newB, colors: Colors.green, name: 'Newbalance'),
+                      givename: newB,
+                      colors: Colors.green,
+                      name: TextConstant.newBalanceText),
                   rowFortext(
-                      givename: pumaaa, colors: Colors.red, name: 'Puma'),
+                      givename: pumaaa,
+                      colors: Colors.red,
+                      name: TextConstant.pumaText),
                   rowFortext(
-                      givename: nikee, colors: Colors.yellow, name: 'Nike'),
+                      givename: nikee,
+                      colors: Colors.yellow,
+                      name: TextConstant.nikeText),
                 ],
               );
             },

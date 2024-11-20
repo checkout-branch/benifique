@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/dataclear/dataClear.dart';
 import 'package:benefique/view/editProfile.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
@@ -55,7 +56,7 @@ class _ProfilePState extends State<ProfileP> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
-          'Profile',
+          TextConstant.profle,
           style: TextStyle(
             fontSize: 25,
             color: Colors.black,
@@ -73,7 +74,7 @@ class _ProfilePState extends State<ProfileP> {
                 valueListenable: profileBox.listenable(),
                 builder: (context, box, child) {
                   if (box.isEmpty) {
-                    return Center(child: Text('No profile data'));
+                    return Center(child: Text(TextConstant.noProfle));
                   }
                   final profile = box.values.first;
                   nameForProfile = profile.username;
@@ -150,19 +151,19 @@ class _ProfilePState extends State<ProfileP> {
                         },
                         leading: Iconsax.profile_circle5,
                         traill: Iconsax.arrow_right,
-                        text: 'Edit Profile',
+                        text: TextConstant.editProfile,
                       ),
                       const Gap(10),
                       buildListTile(
                         leading: Iconsax.heart5,
                         traill: Iconsax.arrow_right,
-                        text: 'Wishlist',
+                        text: TextConstant.wishlist,
                       ),
                       const Gap(10),
                       buildListTile(
                         leading: Iconsax.edit,
                         traill: Iconsax.arrow_right,
-                        text: 'Edit Your Product',
+                        text: TextConstant.editProdect,
                         onTap: () {
                           Navigator.push(
                             context,
@@ -176,7 +177,7 @@ class _ProfilePState extends State<ProfileP> {
                       buildListTile(
                         leading: Iconsax.location,
                         traill: Iconsax.arrow_right,
-                        text: 'Order Address',
+                        text: TextConstant.orderAddress,
                       ),
                       buildListTile(
                         onTap: () {
@@ -184,9 +185,8 @@ class _ProfilePState extends State<ProfileP> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                title: Text('Warning'),
-                                content:
-                                    Text('Are you Want to clear all your data'),
+                                title: Text(TextConstant.warning),
+                                content: Text(TextConstant.clear),
                                 actions: [
                                   Row(
                                     mainAxisAlignment:
@@ -205,7 +205,7 @@ class _ProfilePState extends State<ProfileP> {
                                             Navigator.pop(context);
                                           },
                                           child: Text(
-                                            'Cancel',
+                                            TextConstant.cancel,
                                             style:
                                                 TextStyle(color: mainBlueColor),
                                           )),
@@ -216,7 +216,7 @@ class _ProfilePState extends State<ProfileP> {
                                             dataClear(context);
                                           },
                                           child: Text(
-                                            'Clear',
+                                            TextConstant.clearal,
                                             style: TextStyle(
                                                 color: bagroundColorOFscreen),
                                           )),
@@ -229,7 +229,7 @@ class _ProfilePState extends State<ProfileP> {
                         },
                         leading: Iconsax.data,
                         traill: Iconsax.arrow_right,
-                        text: 'Clear all Data',
+                        text: TextConstant.clearAllData,
                       ),
                       const Gap(10),
                       buildListTile(
@@ -238,9 +238,8 @@ class _ProfilePState extends State<ProfileP> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                title: Text('Warning'),
-                                content:
-                                    Text('Are you Want to clear all your data'),
+                                title: Text(TextConstant.warning),
+                                content: Text(TextConstant.clear),
                                 actions: [
                                   Row(
                                     mainAxisAlignment:
@@ -259,7 +258,7 @@ class _ProfilePState extends State<ProfileP> {
                                             Navigator.pop(context);
                                           },
                                           child: Text(
-                                            'Cancel',
+                                            TextConstant.cancel,
                                             style:
                                                 TextStyle(color: mainBlueColor),
                                           )),
@@ -270,7 +269,7 @@ class _ProfilePState extends State<ProfileP> {
                                             logout();
                                           },
                                           child: Text(
-                                            'Logout',
+                                            TextConstant.logout,
                                             style: TextStyle(
                                                 color: bagroundColorOFscreen),
                                           )),
@@ -283,7 +282,7 @@ class _ProfilePState extends State<ProfileP> {
                         },
                         leading: Iconsax.logout5,
                         traill: Iconsax.arrow_right,
-                        text: 'Logout',
+                        text:  TextConstant.logout,
                       ),
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -176,25 +177,26 @@ class _CartPageState extends State<CartPage> {
                             ? Column(
                                 children: [
                                   priceOfCart(
-                                    name: 'SubTotal',
+                                    name: TextConstant.deliveryCharge,
                                     price: '$subtotal',
                                   ),
                                   const Gap(3),
                                   priceOfCart(
-                                    name: 'Delivery Charge',
+                                    name: TextConstant.deliveryCharge,
                                     price: '$deliveryCharge',
                                   ),
                                   const Gap(3),
-                                  priceOfCart(name: 'Tax', price: '$tax'),
+                                  priceOfCart(
+                                      name: TextConstant.tax, price: '$tax'),
                                   const Gap(3),
                                   const Divider(),
                                   priceOfCart(
-                                    name: 'Total',
+                                    name: TextConstant.total,
                                     price: '$total',
                                   ),
                                 ],
                               )
-                            : Text('Cart is emtyy'),
+                            : Text(TextConstant.emty),
                         const Gap(35),
                         Center(
                           child: ElevatedButton(

@@ -1,3 +1,4 @@
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/LoginAndSpalsh/loginFor.dart';
 import 'package:benefique/view/LoginAndSpalsh/signUp.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -29,7 +30,7 @@ class _GetstartState extends State<Getstart> {
               ),
               Gap(20),
               Text(
-                'Start Journey With',
+                TextConstant.startJourny,
                 style: TextStyle(
                     fontSize: 28,
                     color: Colors.black87,
@@ -37,7 +38,7 @@ class _GetstartState extends State<Getstart> {
                     fontStyle: FontStyle.normal),
               ),
               Text(
-                'Benifique Store',
+                TextConstant.benifique,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -45,10 +46,10 @@ class _GetstartState extends State<Getstart> {
               ),
               Gap(15),
               Text(
-                'Join us to celebrate stylish, comfy footwear.',
+                TextConstant.joinUs,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              Text('Your path to extraordinary style begins here',
+              Text(TextConstant.yourPath,
                   style: TextStyle(fontWeight: FontWeight.bold)),
               Gap(30),
               ElevatedButton(
@@ -62,7 +63,7 @@ class _GetstartState extends State<Getstart> {
                     Navigator.pushReplacement(
                         context, MaterialPageRoute(builder: (ctx) => Login()));
                   },
-                  child: Text('Login',
+                  child: Text(TextConstant.login,
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: mainBlueColor))),
               Gap(20),
@@ -77,7 +78,7 @@ class _GetstartState extends State<Getstart> {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (ctx) => SignUpPage()));
                   },
-                  child: Text('SignUP',
+                  child: Text(TextConstant.signup,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: bagroundColorOFscreen)))

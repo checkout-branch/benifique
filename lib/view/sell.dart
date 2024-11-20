@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:benefique/constants/image_constant.dart';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -69,7 +71,7 @@ class _SellProdectState extends State<SellProdect> {
         ],
         centerTitle: true,
         title: Text(
-          'Sell Prodect',
+          TextConstant.titile,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -90,7 +92,7 @@ class _SellProdectState extends State<SellProdect> {
                     backgroundImage: imageSelect != null
                         ? FileImage(imageSelect!)
                         : AssetImage(
-                            'asset/newOneAddImage-removebg-preview.png',
+                            ImageConstant.circleImge,
                           ) as ImageProvider,
                   ),
                 ),
@@ -103,7 +105,7 @@ class _SellProdectState extends State<SellProdect> {
               child: Row(
                 children: const [
                   Text(
-                    'ADD 2 -4  images to sell faster',
+                    TextConstant.towOrmore,
                     style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.bold,
@@ -136,7 +138,7 @@ class _SellProdectState extends State<SellProdect> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: EdgeInsets.only(left: 10),
-                          hint: Text('Chose the brand'),
+                          hint: Text(TextConstant.barndSelect),
                           value: selectedBrand,
                           items: choseThebrand
                               .map<DropdownMenuItem<String>>((String ele) {
@@ -158,7 +160,7 @@ class _SellProdectState extends State<SellProdect> {
                     controller: itemName,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
-                      hintText: 'Name of item',
+                      hintText: TextConstant.nameSelect,
 
                       // contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder(
@@ -176,7 +178,7 @@ class _SellProdectState extends State<SellProdect> {
                             controller: yourPrice,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Your price',
+                              hintText: TextConstant.yourPrice,
 
                               // contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
@@ -195,7 +197,7 @@ class _SellProdectState extends State<SellProdect> {
                             controller: currentPrice,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Current price',
+                              hintText: TextConstant.hintText,
 
                               // contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
@@ -218,7 +220,7 @@ class _SellProdectState extends State<SellProdect> {
                           controller: discout,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(10),
-                            hintText: 'Discount',
+                            hintText: TextConstant.discount,
 
                             // contentPadding: EdgeInsets.all(10),
                             border: OutlineInputBorder(
@@ -235,7 +237,7 @@ class _SellProdectState extends State<SellProdect> {
                             controller: contry,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'State',
+                              hintText: TextConstant.hintText1,
 
                               // contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
@@ -259,7 +261,7 @@ class _SellProdectState extends State<SellProdect> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: EdgeInsets.only(left: 10),
-                          hint: Text('Select Yout District'),
+                          hint: Text(TextConstant.district),
                           value: selectedState,
                           items: districtsOfKerala
                               .map<DropdownMenuItem<String>>((String ele) {
@@ -341,7 +343,7 @@ class _SellProdectState extends State<SellProdect> {
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.red, content: Text('Fill The Details')));
+          backgroundColor: Colors.red, content: Text(TextConstant.fillthe)));
     }
   }
 

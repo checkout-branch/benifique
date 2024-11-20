@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:benefique/constants/image_constant.dart';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/cartFunction/cartFunction.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
@@ -110,7 +112,7 @@ class _AllprodectPageState extends State<AllprodectPage> {
                 },
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
-                  hintText: 'Search products',
+                  hintText: TextConstant.searchHint,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                   suffixIcon: const Icon(Iconsax.search_normal_1),
@@ -262,7 +264,7 @@ Widget GridForAllProdect({required List<Prodectmodel> productList}) {
                       child: Row(
                         children: [
                           textAoboshiOne2(
-                            text: 'price:',
+                            text: TextConstant.price,
                             fontSizes: 17,
                             colors: const Color.fromARGB(255, 94, 94, 94),
                             fontw: FontWeight.bold,
@@ -308,11 +310,11 @@ Widget GridForAllProdect({required List<Prodectmodel> productList}) {
                                 width: 60,
                                 child: Image(
                                     image: AssetImage(
-                                        'asset/Animation - 1731646779762 (1).gif')),
+                                        ImageConstant.cartAnimationNotifyer)),
                               ),
                               Gap(30),
                               textAoboshiOne2(
-                                  text: 'Added to Cart',
+                                  text: TextConstant.addedtoCart,
                                   fontSizes: 18,
                                   colors: Colors.black,
                                   fontw: FontWeight.bold)
@@ -320,7 +322,7 @@ Widget GridForAllProdect({required List<Prodectmodel> productList}) {
                           )));
                     },
                     child: const Text(
-                      'Add to Cart',
+                      TextConstant.addTocart,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),

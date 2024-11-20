@@ -1,3 +1,4 @@
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/LoginAndSpalsh/signUp.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -36,7 +37,7 @@ class _LoginState extends State<Login> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             duration: Duration(milliseconds: 300),
             backgroundColor: mainBlueColor,
-            content: Text('Invalid username or password')));
+            content: Text(TextConstant.invalidUsername)));
       }
     } else {
       // ignore: use_build_context_synchronously
@@ -51,7 +52,7 @@ class _LoginState extends State<Login> {
             child: Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                child: Text('Enter username & password')),
+                child: Text(TextConstant.enterUsername)),
           )));
     }
   }
@@ -74,7 +75,7 @@ class _LoginState extends State<Login> {
                 Positioned(
                   top: 55,
                   left: 30,
-                  child: Text('Welcome back ! Glad',
+                  child: Text(TextConstant.welcom,
                       style: GoogleFonts.aoboshiOne(
                           textStyle:
                               TextStyle(color: Colors.black, fontSize: 23))),
@@ -82,7 +83,7 @@ class _LoginState extends State<Login> {
                 Positioned(
                   top: 90,
                   left: 30,
-                  child: Text('To See you Again!',
+                  child: Text(TextConstant.seeYOu,
                       style: GoogleFonts.aoboshiOne(
                           textStyle:
                               TextStyle(color: Colors.black, fontSize: 20))),
@@ -90,7 +91,7 @@ class _LoginState extends State<Login> {
               ],
             ),
             textAoboshiOne2(
-                text: 'Login',
+                text: TextConstant.login,
                 fontSizes: 25,
                 colors: Colors.black,
                 fontw: FontWeight.w900),
@@ -104,7 +105,7 @@ class _LoginState extends State<Login> {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
                       label: textAoboshiOne2(
-                          text: 'Login',
+                          text: TextConstant.login,
                           fontSizes: 15,
                           colors: Colors.black,
                           fontw: FontWeight.normal),
@@ -120,7 +121,7 @@ class _LoginState extends State<Login> {
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
                       label: textAoboshiOne2(
-                          text: 'Password',
+                          text: TextConstant.password,
                           fontSizes: 15,
                           colors: Colors.black,
                           fontw: FontWeight.normal),
@@ -144,7 +145,7 @@ class _LoginState extends State<Login> {
                     children: [
                       Gap(20),
                       Text(
-                        "Did'nt have a account ? ",
+                        TextConstant.didntAccout,
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
@@ -158,7 +159,7 @@ class _LoginState extends State<Login> {
                                     builder: (ctx) => SignUpPage()));
                           },
                           child: Text(
-                            'SignUP',
+                            TextConstant.signup,
                             style:
                                 TextStyle(fontSize: 16, color: mainBlueColor),
                           ))
@@ -173,7 +174,7 @@ class _LoginState extends State<Login> {
                         foLogin();
                       },
                       child: textAoboshiOne2(
-                          text: "Login",
+                          text: TextConstant.login,
                           fontSizes: 20,
                           colors: Colors.white,
                           fontw: FontWeight.bold))
