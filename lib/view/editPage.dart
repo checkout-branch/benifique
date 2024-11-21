@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:benefique/constants/image_constant.dart';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/modal/prodectModal/prodectModal.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
@@ -118,7 +120,7 @@ class _EditPageState extends State<EditPage> {
         ],
         centerTitle: true,
         title: Text(
-          'Edit your Product',
+          TextConstant.editProdectForeditpage,
           style: TextStyle(color: Colors.white),
         ),
       ),
@@ -139,7 +141,7 @@ class _EditPageState extends State<EditPage> {
                       backgroundImage: imageSelect != null
                           ? FileImage(imageSelect!)
                           : const AssetImage(
-                                  'asset/newOneAddImage-removebg-preview.png')
+                                  ImageConstant.editpageCircle)
                               as ImageProvider,
                     ),
                   ),
@@ -152,7 +154,7 @@ class _EditPageState extends State<EditPage> {
               child: Row(
                 children: [
                   Text(
-                    'ADD 2-4 images to sell faster',
+                    TextConstant.addMoreimage,
                     style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.bold,
@@ -188,7 +190,7 @@ class _EditPageState extends State<EditPage> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: const EdgeInsets.only(left: 10),
-                          hint: const Text('Choose the brand'),
+                          hint: const Text(TextConstant.choosethebrand),
                           value: selectedBrand,
                           items: choseTheBrand
                               .map<DropdownMenuItem<String>>((String ele) {
@@ -211,7 +213,7 @@ class _EditPageState extends State<EditPage> {
                     controller: itemName,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
-                      hintText: 'Name of item',
+                      hintText: TextConstant.hintTexNameofitem,
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10)),
                     ),
@@ -227,7 +229,7 @@ class _EditPageState extends State<EditPage> {
                             controller: yourPriceController,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Your price',
+                              hintText: TextConstant.hintTextYourprice,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               suffixIcon: Icon(Iconsax.dollar_circle),
@@ -244,7 +246,7 @@ class _EditPageState extends State<EditPage> {
                             controller: currentPriceController,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Current price',
+                              hintText: TextConstant.hintTextCurrentprice,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               suffixIcon: Icon(Iconsax.dollar_circle),
@@ -265,7 +267,7 @@ class _EditPageState extends State<EditPage> {
                           controller: discountController,
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(10),
-                            hintText: 'Discount',
+                            hintText: TextConstant.hintTextDiscount,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             suffixIcon: Icon(Iconsax.discount_circle),
@@ -280,7 +282,7 @@ class _EditPageState extends State<EditPage> {
                             controller: countryController,
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(10),
-                              hintText: 'Country',
+                              hintText: TextConstant.hintTextContry,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               suffixIcon: Icon(Iconsax.location),
@@ -304,7 +306,7 @@ class _EditPageState extends State<EditPage> {
                         child: DropdownButton<String>(
                           isExpanded: true,
                           padding: const EdgeInsets.only(left: 10),
-                          hint: const Text('Select Your State'),
+                          hint: const Text(TextConstant.selectState),
                           value: selectedState,
                           items: districtsOfKerala
                               .map<DropdownMenuItem<String>>((String ele) {

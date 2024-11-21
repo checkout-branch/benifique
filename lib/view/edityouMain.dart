@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
 import 'package:benefique/view/editPage.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -25,7 +26,7 @@ class _EditMainState extends State<EditMain> {
         backgroundColor: mainBlueColor,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          'Edit Products',
+     TextConstant.editProdect ,
           style: TextStyle(color: Colors.white),
         ),
       ),

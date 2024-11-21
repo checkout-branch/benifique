@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,9 @@ double getSubtotal(List<StoreCart> cartItems) {
   double subtotal = 0;
   for (var item in cartItems) {
     try {
-      // Ensure price is a valid number, default to '0' if null
       subtotal += double.parse(item.price ?? '0');
     } catch (e) {
-      log("Invalid price format for item: ${item.itemsName}, price: ${item.price}");
+      log("${item.itemsName}${item.price}");
     }
   }
   return subtotal;
@@ -60,7 +60,7 @@ class _CartPageState extends State<CartPage> {
 
   void deleteCart(int index) {
     cartlisterner.value.removeAt(index);
-    cartlisterner.notifyListeners(); // Notify listeners about the change
+    cartlisterner.notifyListeners(); 
     refreshCart();
   }
 
@@ -133,7 +133,7 @@ class _CartPageState extends State<CartPage> {
                         ValueListenableBuilder<List<StoreCart>>(
                           valueListenable: cartlisterner,
                           builder: (context, cartStoredItems, child) {
-                            log("Cart items: $cartStoredItems");
+                            log('$cartStoredItems');
                             return ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -162,7 +162,7 @@ class _CartPageState extends State<CartPage> {
                                             child: Image(
                                               image: FileImage(File(item
                                                       .image ??
-                                                  'default/image/path.png')),
+                                                 ImageConstant.defaultimage )),
                                             ),
                                           ),
                                         ),

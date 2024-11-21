@@ -1,5 +1,8 @@
+
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/profilModal/profileFunctions.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
+import 'package:benefique/utils/color_cosntants.dart';
 import 'package:benefique/view/LoginAndSpalsh/loginFor.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -40,12 +43,12 @@ class _SignUpPageState extends State<SignUpPage> {
       // var box = Hive.box('userBox');
       // box.put('username', usernameSave);
       // box.put('phonenumber', numberSave);
-         Navigator.pushAndRemoveUntil(context,
+      Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (ctx) => Navigationpage()), (c) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: mainBlueColor,
-          content: Text('Fill the Details to enter')));
+          content: Text(TextConstant.filltheDetails)));
     }
   }
 
@@ -64,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             Gap(100),
             Text(
-              'Hello! Register to get',
+              TextConstant.helloRegister,
               style: GoogleFonts.aoboshiOne(textStyle: TextStyle(fontSize: 30)),
             ),
             Text(
@@ -80,7 +83,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: usernamForSignUp,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
-                      hintText: 'Username',
+                      hintText: TextConstant.hintTextUser,
 
                       // contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder(
@@ -94,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
-                      hintText: 'Phone number',
+                      hintText: TextConstant.hintTextPhone,
 
                       // contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder(
@@ -107,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: passwordForSignUp,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
-                      hintText: 'Password',
+                      hintText: TextConstant.hintTextPassWord,
 
                       // contentPadding: EdgeInsets.all(10),
                       border: OutlineInputBorder(
@@ -120,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       Gap(20),
                       Text(
-                        "Did'nt have a account ? ",
+                        TextConstant.accountDId,
                         style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -156,8 +159,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       forSignUP();
                     },
                     child: Text(
-                      'SignUP',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      TextConstant.signup,
+                      style: TextStyle(color:ColorCosntants.whitecolor, fontSize: 20),
                     ),
                   ),
                 ],

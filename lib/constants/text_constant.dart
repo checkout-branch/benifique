@@ -83,4 +83,41 @@ class TextConstant {
   static const didntAccout = 'Didnt have a account? ';
   static const enterUsername = 'Enter username & password';
   static const invalidUsername = 'Invalid username or password';
+
+  //singnUP page
+
+  static const filltheDetails = 'Fill the Details to enter';
+  static const helloRegister = 'Hello! Register to get';
+  static const hintTextUser = 'Username';
+  static const hintTextPhone = 'Phone number';
+  static const hintTextPassWord = 'Password';
+  static const accountDId = "Did'nt have a account ? ";
+
+  //edit Your page
+  static const editProdectForeditpage = 'Edit your Product';
+  static const addMoreimage = 'ADD 2-4 images to sell faster';
+  static const choosethebrand = 'Choose the brand';
+  static const hintTexNameofitem = 'Name of item';
+  static const hintTextYourprice = 'Your price';
+  static const hintTextCurrentprice = 'Current price';
+  static const hintTextDiscount = 'Discount';
+  static const hintTextContry = 'Country';
+  static const selectState = 'Select Your State';
+  static const save = 'save';
+  static const profilesave = 'Profile saved successfully';
+
+  //edityourmain  page
+  static const eidtprodect = 'Edit Products';
+
+//orderPage
+  static const order = 'Order';
+  static const addAdress = 'Add Delivery Address';
+  static const addname = 'Name';
+  static const addnumber = 'Number';
+  static const addPincode = 'Pincode';
+  static const addState = 'State';
+  static const addCity = 'City';
+  static const addHouse = 'House Name';
+  static const addHouseName = 'Housename or Building name';
+  static const addSaveOrder = 'Save & Order';
 }

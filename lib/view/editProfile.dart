@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/modal/profileModal/profileModal.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
 
   Future<void> take() async {
     var box = await Hive.openBox<ProfileOfbenifique>('saveData');
-    
+
     List<ProfileOfbenifique>? profileList = box.values.toList();
     if (profileList.isNotEmpty) {
       var profile = profileList.first;
@@ -49,8 +50,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
             text: 'Edit Your Profile',
             fontSizes: 20,
             colors: Colors.black,
-            fontw: FontWeight.normal
-            ),
+            fontw: FontWeight.normal),
       ),
       body: Center(
         child: Container(
@@ -74,7 +74,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
                 controller: username,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
-                  label: Text('Username'),
+                  label: Text(TextConstant.hintTextUser),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
@@ -84,7 +84,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
                 controller: password,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
-                  label: Text('Password'),
+                  label: Text(TextConstant.hintTextPassWord),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
@@ -94,7 +94,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
                 controller: phonenumber,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(10),
-                  label: Text('Phonenumber'),
+                  label: Text(TextConstant.hintTextPhone),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
@@ -108,7 +108,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
                     saveProfile();
                   },
                   child: textAoboshiOne2(
-                      text: "Save",
+                      text: TextConstant.save,
                       fontSizes: 20,
                       colors: Colors.white,
                       fontw: FontWeight.bold))
@@ -135,7 +135,7 @@ class _EditPagedForProfileState extends State<EditPagedForProfile> {
 
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('Profile saved successfully')));
+        .showSnackBar(SnackBar(content: Text(TextConstant.profilesave)));
     // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }

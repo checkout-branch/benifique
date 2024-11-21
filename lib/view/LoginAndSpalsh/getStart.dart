@@ -1,4 +1,6 @@
+import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/constants/text_constant.dart';
+import 'package:benefique/utils/color_cosntants.dart';
 import 'package:benefique/view/LoginAndSpalsh/loginFor.dart';
 import 'package:benefique/view/LoginAndSpalsh/signUp.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -26,7 +28,7 @@ class _GetstartState extends State<Getstart> {
                 width: double.infinity,
                 child: Image(
                     image:
-                        AssetImage('asset/animatedIOocn-removebg-preview.png')),
+                        AssetImage(ImageConstant.mainImageOFsplash)),
               ),
               Gap(20),
               Text(
@@ -57,7 +59,7 @@ class _GetstartState extends State<Getstart> {
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: mainBlueColor),
                           borderRadius: BorderRadius.circular(15)),
-                      backgroundColor: Colors.white,
+                      backgroundColor: ColorCosntants.whitecolor,
                       minimumSize: Size(200, 50)),
                   onPressed: () {
                     Navigator.pushReplacement(

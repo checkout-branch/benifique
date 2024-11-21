@@ -1,4 +1,6 @@
+import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/constants/text_constant.dart';
+import 'package:benefique/utils/color_cosntants.dart';
 import 'package:benefique/view/LoginAndSpalsh/signUp.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
@@ -69,7 +71,7 @@ class _LoginState extends State<Login> {
                 Container(
                   color: bagroundColorOFscreen,
                   child: Image(
-                    image: AssetImage('asset/loginn-removebg-preview.png'),
+                    image: AssetImage(ImageConstant.mainImageOfLogin),
                   ),
                 ),
                 Positioned(
@@ -78,7 +80,7 @@ class _LoginState extends State<Login> {
                   child: Text(TextConstant.welcom,
                       style: GoogleFonts.aoboshiOne(
                           textStyle:
-                              TextStyle(color: Colors.black, fontSize: 23))),
+                              TextStyle(color: ColorCosntants.blackcolor, fontSize: 23))),
                 ),
                 Positioned(
                   top: 90,
@@ -86,7 +88,7 @@ class _LoginState extends State<Login> {
                   child: Text(TextConstant.seeYOu,
                       style: GoogleFonts.aoboshiOne(
                           textStyle:
-                              TextStyle(color: Colors.black, fontSize: 20))),
+                              TextStyle(color:ColorCosntants.blackcolor, fontSize: 20))),
                 ),
               ],
             ),
@@ -176,7 +178,7 @@ class _LoginState extends State<Login> {
                       child: textAoboshiOne2(
                           text: TextConstant.login,
                           fontSizes: 20,
-                          colors: Colors.white,
+                          colors:ColorCosntants.whitecolor,
                           fontw: FontWeight.bold))
                 ],
               ),

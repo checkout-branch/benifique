@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/view/LoginAndSpalsh/getStart.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image(image: AssetImage('asset/benifiqueLogo.png')),
+        child: Image(image: AssetImage(ImageConstant.splasheImage)),
       ),
     );
   }
@@ -37,12 +38,14 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isLoggedin) {
       Navigator.pushReplacement(
           // ignore: use_build_context_synchronously
-          context, MaterialPageRoute(builder: (ctx) =>  Navigationpage()));
+          context,
+          MaterialPageRoute(builder: (ctx) => Navigationpage()));
     } else {
       Navigator.pushReplacement(
 
           // ignore: use_build_context_synchronously
-          context, MaterialPageRoute(builder: (ctx) => const Getstart()));
+          context,
+          MaterialPageRoute(builder: (ctx) => const Getstart()));
     }
   }
 }

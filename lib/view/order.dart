@@ -1,3 +1,4 @@
+import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -19,13 +20,13 @@ class _OrderPageState extends State<OrderPage> {
         child: SafeArea(
           child: Column(
             children: [
-               Gap(15),
-               Stack(
+              Gap(15),
+              Stack(
                 children: const [
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "Order",
+                      TextConstant.order,
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.white,
@@ -44,99 +45,99 @@ class _OrderPageState extends State<OrderPage> {
                   ),
                 ],
               ),
-               Gap(50),
+              Gap(50),
               ConstrainedBox(
                 constraints: BoxConstraints(
                     minHeight: MediaQuery.of(context).size.height),
                 child: Container(
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(50),
                           topLeft: Radius.circular(50))),
                   width: double.infinity,
                   child: Container(
-                      margin:  EdgeInsets.only(left: 20, right: 20),
+                      margin: EdgeInsets.only(left: 20, right: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                           Gap(50),
+                          Gap(50),
                           Row(
                             children: [
                               textAoboshiOne2(
-                                  text: 'Add Delivery Address',
+                                  text: TextConstant.addAdress,
                                   fontSizes: 20,
                                   colors: Colors.black87,
                                   fontw: FontWeight.bold),
-                               Gap(5),
-                               Icon(Iconsax.location_add)
+                              Gap(5),
+                              Icon(Iconsax.location_add)
                             ],
                           ),
-                           Gap(30),
+                          Gap(30),
                           textFeilds(
-                              name: 'Name',
+                              name: TextConstant.addname,
                               iconName: Icons.person,
                               controllName: ''),
-                           Gap(20),
+                          Gap(20),
                           textFeilds(
                               keybordtype: TextInputType.number,
-                              name: 'Number',
+                              name: TextConstant.addnumber,
                               iconName: Icons.person,
                               controllName: ''),
-                           Gap(20),
+                          Gap(20),
                           Row(
                             children: [
                               Expanded(
                                 child: SizedBox(
                                   height: 55,
                                   child: textFeilds(
-                                      name: 'Pincode',
+                                      name: TextConstant.addPincode,
                                       iconName: Iconsax.location_tick5,
                                       controllName: ''),
                                 ),
                               ),
-                               Gap(10),
+                              Gap(10),
                               Expanded(
                                 child: SizedBox(
                                   height: 55,
                                   child: textFeilds(
-                                      name: 'State',
+                                      name: TextConstant.addState,
                                       iconName: Iconsax.global_search4,
                                       controllName: ''),
                                 ),
                               )
                             ],
                           ),
-                           Gap(20),
+                          Gap(20),
                           Row(
                             children: [
                               Expanded(
                                 child: SizedBox(
                                   height: 55,
                                   child: textFeilds(
-                                      name: 'City',
+                                      name: TextConstant.addCity,
                                       iconName: Iconsax.dollar_circle,
                                       controllName: ''),
                                 ),
                               ),
-                               Gap(10),
+                              Gap(10),
                               Expanded(
                                 child: SizedBox(
                                   height: 55,
                                   child: textFeilds(
-                                      name: 'House Name',
+                                      name: TextConstant.addHouse,
                                       iconName: Iconsax.home_12,
                                       controllName: ''),
                                 ),
                               )
                             ],
                           ),
-                           Gap(20),
+                          Gap(20),
                           textFeilds(
-                              name: 'Housename or Building name',
+                              name: TextConstant.addHouseName,
                               iconName: Iconsax.building4,
                               controllName: ''),
-                           Gap(20),
+                          Gap(20),
                           Center(
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
@@ -145,8 +146,8 @@ class _OrderPageState extends State<OrderPage> {
                                           borderRadius:
                                               BorderRadius.circular(10))),
                                   onPressed: () {},
-                                  child:  Text(
-                                    'Save & Order',
+                                  child: Text(
+                                    TextConstant.addSaveOrder,
                                     style: TextStyle(color: Colors.white),
                                   )))
                         ],
