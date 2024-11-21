@@ -28,6 +28,8 @@ class _AllprodectPageState extends State<AllprodectPage> {
   String search = '';
   List<Prodectmodel> searchResult = [];
   var cartChange = 'Add to Cart';
+  
+
 
   @override
   void initState() {
@@ -202,6 +204,7 @@ Widget GridForAllProdect({required List<Prodectmodel> productList}) {
               context,
               MaterialPageRoute(
                 builder: (ctx) => ViewProdect(
+                  catacore: getDatass.category,
                   imagepath: File(getDatass.images ?? ''),
                   titleName: getDatass.itemname,
                   discount: getDatass.discound,

@@ -120,4 +120,7 @@ class TextConstant {
   static const addHouse = 'House Name';
   static const addHouseName = 'Housename or Building name';
   static const addSaveOrder = 'Save & Order';
+
+  //order animation
+  static const animationpageText = 'Adding your Location';
 }

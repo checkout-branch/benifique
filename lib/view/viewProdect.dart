@@ -1,5 +1,6 @@
 import 'dart:io';
- import 'package:benefique/view/widgets/widgetAndColors.dart';
+import 'package:benefique/ordernimation.dart';
+import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
@@ -11,6 +12,7 @@ class ViewProdect extends StatefulWidget {
   String? price;
   String? brand;
   File imagepath;
+  String? catacore;
 
   ViewProdect(
       {super.key,
@@ -18,6 +20,7 @@ class ViewProdect extends StatefulWidget {
       required this.discount,
       required this.imagepath,
       required this.brand,
+      required this.catacore,
       required this.price});
 
   @override
@@ -72,7 +75,7 @@ class _ViewProdectState extends State<ViewProdect> {
               child: Container(
                 margin: EdgeInsets.only(left: 20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,                       
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gap(25),
                     textAoboshiOne2(
@@ -155,7 +158,6 @@ class _ViewProdectState extends State<ViewProdect> {
                             backgroundColor: mainBlueColor,
                             radius: 15,
                             child: Icon(
-                              
                               Icons.reviews,
                               color: Colors.white,
                               size: 10,
@@ -225,7 +227,13 @@ class _ViewProdectState extends State<ViewProdect> {
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         backgroundColor: mainBlueColor),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (ctx) =>
+                                                  OrderAnimation()));
+                                    },
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
