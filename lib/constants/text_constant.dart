@@ -8,7 +8,7 @@ class TextConstant {
   //card section
   static const brandNameAdidas = 'Adidas';
   static const modelNameAdidas = 'Forum Low';
-
+  
   static const newbalanceBrandname = 'New Balance';
   static const newbalanceModelName = 'Casablanca';
 
@@ -43,6 +43,7 @@ class TextConstant {
   static const emty = 'Cart is emtyy';
 
   //profile page
+
   static const profle = 'Profile';
   static const noProfle = 'Profile';
   static const editProfile = 'Edit Profile';
@@ -57,6 +58,7 @@ class TextConstant {
   static const logout = 'Logout';
 
   // sellpage
+
   static const titile = 'Sell Prodect';
   static const towOrmore = 'ADD 2 -4  images to sell faster';
   static const barndSelect = 'Chose the brand';
@@ -69,6 +71,7 @@ class TextConstant {
   static const fillthe = 'Fill The Details';
 
 // get started
+
   static const startJourny = 'Start Journey With';
   static const benifique = 'Benifique Store';
   static const joinUs = 'Join us to celebrate stylish, comfy footwear.';
@@ -77,6 +80,7 @@ class TextConstant {
   static const signup = 'SignUP';
 
   // loginpage
+
   static const welcom = 'Welcome back ! Glad';
   static const seeYOu = 'Welcome back ! Glad';
   static const password = 'Password';
@@ -94,6 +98,7 @@ class TextConstant {
   static const accountDId = "Did'nt have a account ? ";
 
   //edit Your page
+
   static const editProdectForeditpage = 'Edit your Product';
   static const addMoreimage = 'ADD 2-4 images to sell faster';
   static const choosethebrand = 'Choose the brand';
@@ -107,9 +112,11 @@ class TextConstant {
   static const profilesave = 'Profile saved successfully';
 
   //edityourmain  page
+
   static const eidtprodect = 'Edit Products';
 
 //orderPage
+
   static const order = 'Order';
   static const addAdress = 'Add Delivery Address';
   static const addname = 'Name';
@@ -120,7 +127,7 @@ class TextConstant {
   static const addHouse = 'House Name';
   static const addHouseName = 'Housename or Building name';
   static const addSaveOrder = 'Save & Order';
-
   //order animation
   static const animationpageText = 'Adding your Location';
 }
+ 

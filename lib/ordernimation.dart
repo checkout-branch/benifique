@@ -19,7 +19,6 @@ class _OrderAnimationState extends State<OrderAnimation> {
   @override
   void initState() {
     super.initState();
-
     Timer(Duration(seconds: 3), () {
       setState(() {
         showFirstIcon = false;
