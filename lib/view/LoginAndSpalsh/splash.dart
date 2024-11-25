@@ -17,8 +17,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (ctx) => Getstart()));
       checkLogin();
     });
   }
@@ -27,13 +25,16 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          alignment: Alignment.center,
           children: const [
             Image(image: AssetImage(ImageConstant.splasheImage)),
-            Image(
-              image: AssetImage('asset/loading.gif'),
-              height: 100,
+            Positioned(
+              bottom: 20,
+              child: Image(
+                image: AssetImage(ImageConstant.imageJso),
+                height: 100,
+              ),
             )
           ],
         ),
@@ -46,15 +47,16 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isLoggedin = prefs.getBool("isLogined") ?? false;
     if (isLoggedin) {
       Navigator.pushReplacement(
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (ctx) => Navigationpage()));
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (ctx) => Navigationpage()),
+      );
     } else {
       Navigator.pushReplacement(
-
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (ctx) => const Getstart()));
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (ctx) => const Getstart()),
+      );
     }
   }
 }

@@ -1,4 +1,3 @@
-
 class ImageConstant {
   static const adidasImage = 'asset/forumgreen-removebg-preview.png';
   static const newbalanceImge = 'asset/newwww-removebg-preview (1).png';
@@ -22,6 +21,8 @@ class ImageConstant {
   static const editpageCircle = 'asset/newOneAddImage-removebg-preview.png';
 
   //animation
-  static const imagesFOrtrue=  'asset/Animation - 1732167346431.gif';
-  static const imagesFOrflase=  'asset/Animation - 1732168735435.gif';
+  static const imagesFOrtrue = 'asset/Animation - 1732167346431.gif';
+  static const imagesFOrflase = 'asset/Animation - 1732168735435.gif';
+  static const imageJso = 'asset/DeleveryAnimation.json';
+  static const trueAnimation = 'asset/Trueanimation.json';
 }

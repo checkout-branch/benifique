@@ -1,4 +1,3 @@
-import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/utils/color_cosntants.dart';
 import 'package:benefique/view/LoginAndSpalsh/signUp.dart';
@@ -6,7 +5,8 @@ import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
@@ -62,6 +62,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bagroundColorOFscreen,
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(
@@ -70,25 +71,10 @@ class _LoginState extends State<Login> {
               children: [
                 Container(
                   color: bagroundColorOFscreen,
-                  child: Image(
-                    image: AssetImage(ImageConstant.mainImageOfLogin),
-                  ),
-                ),
-                Positioned(
-                  top: 55,
-                  left: 30,
-                  child: Text(TextConstant.welcom,
-                      style: GoogleFonts.aoboshiOne(
-                          textStyle:
-                              TextStyle(color: ColorCosntants.blackcolor, fontSize: 23))),
-                ),
-                Positioned(
-                  top: 90,
-                  left: 30,
-                  child: Text(TextConstant.seeYOu,
-                      style: GoogleFonts.aoboshiOne(
-                          textStyle:
-                              TextStyle(color:ColorCosntants.blackcolor, fontSize: 20))),
+                  child: SizedBox(
+                      height: 400,
+                      width: 300,
+                      child: Lottie.asset('asset/animatioNJson.json')),
                 ),
               ],
             ),
@@ -178,7 +164,7 @@ class _LoginState extends State<Login> {
                       child: textAoboshiOne2(
                           text: TextConstant.login,
                           fontSizes: 20,
-                          colors:ColorCosntants.whitecolor,
+                          colors: ColorCosntants.whitecolor,
                           fontw: FontWeight.bold))
                 ],
               ),

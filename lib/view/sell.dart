@@ -241,7 +241,7 @@ class _SellProdectState extends State<SellProdect> {
 
                               // contentPadding: EdgeInsets.all(10),
                               border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10)), 
                               suffixIcon: Icon(Iconsax.location),
                             ),
                           ),

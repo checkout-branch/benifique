@@ -4,6 +4,7 @@ import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/view/bottomNavigation/bt.dart';
 import 'package:benefique/view/widgets/widgetAndColors.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class OrderAnimation extends StatefulWidget {
   const OrderAnimation({super.key});
@@ -15,7 +16,6 @@ class OrderAnimation extends StatefulWidget {
 class _OrderAnimationState extends State<OrderAnimation> {
   bool showFirstIcon = true;
   bool showText = false;
-
   @override
   void initState() {
     super.initState();
@@ -24,7 +24,7 @@ class _OrderAnimationState extends State<OrderAnimation> {
         showFirstIcon = false;
       });
 
-      Timer(Duration(seconds: 2), () {
+      Timer(Duration(seconds: 1), () {
         setState(() {
           showText = true;
         });
@@ -48,27 +48,22 @@ class _OrderAnimationState extends State<OrderAnimation> {
               child: Container(
                 child: showFirstIcon
                     ? Column(
-                      children: [
-                        SizedBox(
-                          height: 300,
-                          child: Image(
-                            image: AssetImage(ImageConstant.imagesFOrtrue),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        textAoboshiOne2(
-                            text: TextConstant.animationpageText,
-                            fontSizes: 20,
-                            colors: Colors.black,
-                            fontw: FontWeight.bold)
-                      ],
-                    ) // First icon
+                        children: [
+                          SizedBox(
+                              height: 300,
+                              child:
+                                  Lottie.asset(ImageConstant.imageJso)),
+                          textAoboshiOne2(
+                              text: TextConstant.animationpageText,
+                              fontSizes: 20,
+                              colors: Colors.black,
+                              fontw: FontWeight.bold)
+                        ],
+                      ) // First icon
                     : SizedBox(
                         height: 300,
-                        child: Image(
-                          image: AssetImage(ImageConstant.imagesFOrtrue),
-                          fit: BoxFit.cover,
-                        ),
+                        
+                        child: Lottie.asset(ImageConstant.trueAnimation),
                       ),
               ),
             ),

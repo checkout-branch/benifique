@@ -282,7 +282,7 @@ class _ProfilePState extends State<ProfileP> {
                         },
                         leading: Iconsax.logout5,
                         traill: Iconsax.arrow_right,
-                        text:  TextConstant.logout,
+                        text: TextConstant.logout,
                       ),
                     ],
                   ),

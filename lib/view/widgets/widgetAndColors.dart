@@ -10,7 +10,7 @@ var textColor = Colors.black;
 // Colors.blue
 // Colors.blueGrey;
 //  const Color(0xff001C57);
-var bagroundColorOFscreen = Colors.white;
+var bagroundColorOFscreen = Color(0xfffdfdfd);
 // const Color(0xffEEEEEE);
 // blueGrey
 var textFeildColor = const Color(0xffd9d9d9);
@@ -54,9 +54,7 @@ Widget benificContainerRow() {
                   image: AssetImage('asset/Benfiqe-removebg-preview.png'))),
           Spacer(),
           GestureDetector(
-            onTap: () {
-              
-            },
+            onTap: () {},
             child: CircleAvatar(
               radius: 20,
               backgroundColor: mainBlueColor,
