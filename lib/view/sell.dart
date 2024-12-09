@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:benefique/constants/image_constant.dart';
 import 'package:benefique/constants/text_constant.dart';
 import 'package:benefique/controller/prodectModals/prodectModel.dart';
@@ -327,7 +326,7 @@ class _SellProdectState extends State<SellProdect> {
     final contrys = contry.text;
     final statesss = state.text;
     final category = selectedBrand;
-    if (item.isNotEmpty && yourPice.isNotEmpty && curruntPrice.isNotEmpty) {
+    if (item.isNotEmpty && yourPice.isNotEmpty && curruntPrice.isNotEmpty && imageSelect!=null) {
       final saveAll = Prodectmodel(
           modal: brand,
           itemname: item,

@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Positioned(
               bottom: 20,
               child: Image(
-                image: AssetImage(ImageConstant.imageJso),
+                image: AssetImage('asset/loading.gif'),
                 height: 100,
               ),
             )

@@ -245,6 +245,7 @@ Widget textAoboshiOne(
           color: colors, fontSize: fontSizes, fontWeight: FontWeight.bold));
 }
 
+
 Widget textAoboshiOne2(
     {required String text,
     required double fontSizes,

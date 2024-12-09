@@ -51,8 +51,7 @@ class _OrderAnimationState extends State<OrderAnimation> {
                         children: [
                           SizedBox(
                               height: 300,
-                              child:
-                                  Lottie.asset(ImageConstant.imageJso)),
+                              child: Lottie.asset(ImageConstant.imageJso)),
                           textAoboshiOne2(
                               text: TextConstant.animationpageText,
                               fontSizes: 20,
@@ -62,7 +61,6 @@ class _OrderAnimationState extends State<OrderAnimation> {
                       ) // First icon
                     : SizedBox(
                         height: 300,
-                        
                         child: Lottie.asset(ImageConstant.trueAnimation),
                       ),
               ),

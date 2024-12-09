@@ -51,7 +51,7 @@ class _NavigationpageState extends State<Navigationpage> {
           tabs: const [
             GButton(
               icon: (Iconsax.home),
-              text: 'Home',
+              text: 'Home', 
             ),
             GButton(
               icon: (Iconsax.shop),
